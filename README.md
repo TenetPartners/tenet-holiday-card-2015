@@ -1,17 +1,14 @@
 [![devDependency Status](https://david-dm.org/TenetPartners/react-seed/dev-status.svg)](https://david-dm.org/TenetPartners/react-seed#info=devDependencies)
 
-# react-seed
+# Tenet Partners Holiday Card 2015
 
-A set of packages and build scripts to enable test driven development for React apps in ES6.
+A short, fun questionnaire that stores and displays anonymous responses.
 
 ## Setup
 Requires node and npm. `brew install node` gets you both.
 
-1. Download [latest zip](https://github.com/TenetPartners/react-seed/archive/master.zip).
-2. Rename folder to project name.
-3. `cd [PROJECT NAME]`
-4. `npm install`
-5. `gulp`
+1. `npm install`
+2. `gulp`
 
 ## Build environment
 Running `gulp` starts the development environment. All CSS and JS files are monitored and changes will automatically reload the browser via [browser-sync](http://www.browsersync.io/).
