@@ -4,7 +4,9 @@
   "author": "Tenet Partners",
   "license": "MIT",
   "babel": {
-    "presets": ["es2015"]
+    "presets": [
+      "es2015"
+    ]
   },
   "devDependencies": {
     "autobind-decorator": "^1.3.2",
@@ -37,6 +39,7 @@
     "react": "^0.14.0",
     "react-addons-css-transition-group": "^0.14.0",
     "react-addons-test-utils": "^0.14.3",
+    "react-addons-update": "^0.14.3",
     "react-catalyst": "^0.3.0",
     "react-dom": "^0.14.0",
     "react-mixin": "^3.0.0",

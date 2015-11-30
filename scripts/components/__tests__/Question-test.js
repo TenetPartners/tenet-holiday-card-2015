@@ -31,7 +31,8 @@ describe('Question', () => {
     it('has question propType that is a required object', function() {
       expect(Question.propTypes.question).toExist();
       // TODO: fix test for question proptype
-      // expect(Question.propTypes.question).toBe(React.PropTypes.shape({
+      // expect(Question.propTypes.question).toBeA(React.PropTypes.shape);
+      // expect(Question.propTypes.question).toEqual(React.PropTypes.shape({
       //   id: React.PropTypes.number.isRequired,
       //   title: React.PropTypes.string.isRequired,
       //   options: React.PropTypes.object.isRequired,

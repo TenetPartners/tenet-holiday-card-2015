@@ -16,17 +16,17 @@ sinon.stub(questions, 'getSurveyQuestions', function() {
       question: 'What day is it?',
       imageUrl: 'http://i.istockimg.com/sample-question1.jpg',
       options: [
-        {title: 'opt1', imageUrl: ''},
-        {title: 'opt2', imageUrl: ''},
-        {title: 'opt3', imageUrl: ''}
+        {id: 'opt1', title: 'opt1', imageUrl: ''},
+        {id: 'opt2', title: 'opt2', imageUrl: ''},
+        {id: 'opt3', title: 'opt3', imageUrl: ''}
       ]
     },
     q2: {
       question: 'What time is it?',
       imageUrl: 'http://i.istockimg.com/sample-question2.jpg',
       options: [
-        {title: 'opt1', imageUrl: ''},
-        {title: 'opt2', imageUrl: ''}
+        {id: 'opt1', title: 'opt1', imageUrl: ''},
+        {id: 'opt2', title: 'opt2', imageUrl: ''}
       ]
     }
   }
@@ -46,8 +46,8 @@ describe('AnonymousSurveyApp', () => {
         <div className="survey">
           <Intro surveyClosed={false} text="Please answer the questions below and check back later for the full results." surveyClosedText="Thank you for taking our holiday survey. Here's how everyone responded."/>
           <ul className="questions">
-            <Question question={{imageUrl: 'http://i.istockimg.com/sample-question1.jpg', options: [{imageUrl: '', title: 'opt1'}, {imageUrl: '', title: 'opt2'}, {imageUrl: '', title: 'opt3'}], question: 'What day is it?'}} />
-            <Question question={{imageUrl: 'http://i.istockimg.com/sample-question2.jpg', options: [{imageUrl: '', title: 'opt1'}, {imageUrl: '', title: 'opt2'}], question: 'What time is it?'}} />
+            <Question question={{imageUrl: 'http://i.istockimg.com/sample-question1.jpg', options: [{id: 'opt1', imageUrl: '', title: 'opt1'}, {id: 'opt2', imageUrl: '', title: 'opt2'}, {id: 'opt3', imageUrl: '', title: 'opt3'}], question: 'What day is it?'}} />
+            <Question question={{imageUrl: 'http://i.istockimg.com/sample-question2.jpg', options: [{id: 'opt1', imageUrl: '', title: 'opt1'}, {id: 'opt2', imageUrl: '', title: 'opt2'}], question: 'What time is it?'}} />
           </ul>
         </div>
       );
@@ -81,5 +81,21 @@ describe('AnonymousSurveyApp', () => {
     it('should load questions when component loads', function() {
       expect(Object.keys(this.result.state.questions).length).toBeGreaterThan(0);
     });
+
+    it('stores answers', function() {
+      expect(this.result.state.answers).toBeA('object');
+    })
+
+    it('should load answers from localStorage');
+
+    it('should have a selectOption function', function() {
+      expect(this.result.selectOption).toExist();
+    });
+
+    // this state should be tested in the component that will be affected
+    // it('selecting an option should change the state of answers', function() {
+    //   this.result.selectOption('q1', 'opt1');
+    //   expect(this.result.state.answers.q1).toBe('opt1');
+    // });
   });
 });
