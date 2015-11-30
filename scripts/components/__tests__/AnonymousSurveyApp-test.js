@@ -1,6 +1,8 @@
 import React from 'react'
-import expect, { createSpy, spyOn, isSpy } from 'expect'
-import TestUtils, {createRenderer, Simulate, renderIntoDocument} from 'react-addons-test-utils'
+// import expect, { createSpy, spyOn, isSpy } from 'expect'
+import expect from 'expect'
+// import TestUtils, {createRenderer, Simulate, renderIntoDocument} from 'react-addons-test-utils'
+import TestUtils, {createRenderer, renderIntoDocument} from 'react-addons-test-utils'
 import sinon from 'sinon'
 import expectJSX from 'expect-jsx';
 expect.extend(expectJSX);
