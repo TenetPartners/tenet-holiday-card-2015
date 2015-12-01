@@ -48,8 +48,8 @@ describe('AnonymousSurveyApp', () => {
         <div className="survey">
           <Intro surveyClosed={false} text="Please answer the questions below and check back later for the full results." surveyClosedText="Thank you for taking our holiday survey. Here's how everyone responded."/>
           <ul className="questions">
-            <Question question={{imageUrl: 'http://i.istockimg.com/sample-question1.jpg', options: [{id: 'opt1', imageUrl: '', title: 'opt1'}, {id: 'opt2', imageUrl: '', title: 'opt2'}, {id: 'opt3', imageUrl: '', title: 'opt3'}], question: 'What day is it?'}} />
-            <Question question={{imageUrl: 'http://i.istockimg.com/sample-question2.jpg', options: [{id: 'opt1', imageUrl: '', title: 'opt1'}, {id: 'opt2', imageUrl: '', title: 'opt2'}], question: 'What time is it?'}} />
+            <Question index="q1" question={{imageUrl: 'http://i.istockimg.com/sample-question1.jpg', options: [{id: 'opt1', imageUrl: '', title: 'opt1'}, {id: 'opt2', imageUrl: '', title: 'opt2'}, {id: 'opt3', imageUrl: '', title: 'opt3'}], question: 'What day is it?'}} selectOption={() => {}} />
+            <Question index="q2" question={{imageUrl: 'http://i.istockimg.com/sample-question2.jpg', options: [{id: 'opt1', imageUrl: '', title: 'opt1'}, {id: 'opt2', imageUrl: '', title: 'opt2'}], question: 'What time is it?'}} selectOption={() => {}} />
           </ul>
         </div>
       );
@@ -94,10 +94,23 @@ describe('AnonymousSurveyApp', () => {
       expect(this.result.selectOption).toExist();
     });
 
-    // this state should be tested in the component that will be affected
-    // it('selecting an option should change the state of answers', function() {
-    //   this.result.selectOption('q1', 'opt1');
-    //   expect(this.result.state.answers.q1).toBe('opt1');
-    // });
+    it('selecting an option should change the state of answers', function() {
+      this.result.selectOption('q1', 'opt1');
+      this.result.selectOption('q2', 'opt2');
+      expect(this.result.state.answers.q1).toBe('opt1');
+      expect(this.result.state.answers.q2).toBe('opt2');
+      this.result.selectOption('q1', 'opt2');
+      expect(this.result.state.answers.q1).toBe('opt2');
+      expect(this.result.state.answers.q2).toBe('opt2');
+    });
+
+    it('selecting an option should increment the option responseCount', function() {
+      this.result.selectOption('q1', 'opt1');
+      this.result.selectOption('q2', 'opt2');
+      expect(this.result.state.questions.q1.options[0].responseCount).toEqual(1);
+      expect(this.result.state.questions.q2.options[1].responseCount).toEqual(1);
+      this.result.selectOption('q1', 'opt1');
+      expect(this.result.state.questions.q1.options[0].responseCount).toEqual(2);
+    });
   });
 });

@@ -14,9 +14,9 @@ let questions = {
         question: 'What will question 2 actually be?',
         imageUrl: 'http://i.istockimg.com/file_thumbview_approve/36248396/5/stock-photo-36248396-blackened-cajun-sea-bass.jpg',
         options: [
-          {id: 'uber', title: 'Uber', imageUrl: ''},
-          {id: 'lyft', title: 'Lyft', imageUrl: ''},
-          {id: 'na', title: 'Neither', imageUrl: ''}
+          {id: 'opt21', title: 'opt 2-1', imageUrl: ''},
+          {id: 'opt22', title: 'opt 2-2', imageUrl: ''},
+          {id: 'opt23', title: 'opt 2-3', imageUrl: ''}
         ]
       },
       q3: {

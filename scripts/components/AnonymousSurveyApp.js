@@ -41,19 +41,24 @@ class AnonymousSurveyApp extends React.Component {
   }
 
   selectOption(question, option) {
-    // var answer = this.state.answers[question];
-    // answers[question] = option;
-    // answer = option;
-    // this.state.answers[question] = option;
-    // this.setState({answers: this.state.order});
+    let optIndex = this.state.questions[question].options.findIndex((opt) => opt.id === option);
+
     this.setState({
-      // answers: this.state.answers.
-      answers: update(this.state.answers, {question: {$set: option}})
+      answers: update(this.state.answers, {[question]: {$set: option}}),
+      questions: update(this.state.questions, {
+        [question]: {
+          options: {
+            [optIndex]: {
+              responseCount: { $apply: function(x) { return x + 1 || 1; } }
+            }
+          }
+        }
+      })
     })
   }
 
   renderQuestion(key) {
-    return <Question key={key} question={this.state.questions[key]} />
+    return <Question key={key} index={key} question={this.state.questions[key]} selectOption={this.selectOption.bind(this)} />
   }
 
   render() {

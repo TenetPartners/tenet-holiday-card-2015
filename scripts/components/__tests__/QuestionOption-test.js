@@ -16,7 +16,7 @@ describe('QuestionOption', () => {
     let option = question.options[0];
     let answers = {};
     let renderer = createRenderer();
-    renderer.render(<QuestionOption option={option} selectOption={() => {}} question={question} answers={answers} />);
+    renderer.render(<QuestionOption option={option} selectOption={() => {}} questionId="q1" answers={answers} />);
     this.result = renderer.getRenderOutput();
   });
 
@@ -53,15 +53,9 @@ describe('QuestionOption', () => {
       expect(QuestionOption.propTypes.selectOption).toBe(React.PropTypes.func.isRequired);
     });
 
-    it('has question propType that is a required object', function() {
-      expect(QuestionOption.propTypes.question).toExist();
-      // TODO: fix test for question proptype
-      // expect(QuestionOption.propTypes.question).toEqual(React.PropTypes.shape({
-      //   id: React.PropTypes.number.isRequired,
-      //   title: React.PropTypes.string.isRequired,
-      //   options: React.PropTypes.object.isRequired,
-      //   imageUrl: React.PropTypes.string
-      // }).isRequired);
+    it('has questionId propType that is a required object', function() {
+      expect(QuestionOption.propTypes.questionId).toExist();
+      expect(QuestionOption.propTypes.questionId).toBe(React.PropTypes.string.isRequired);
     });
 
     it('has answers propType that is a required object', function() {
