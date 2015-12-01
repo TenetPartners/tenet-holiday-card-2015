@@ -12,8 +12,7 @@ import babelify from 'babelify'
 import watchify from 'watchify'
 import notify from 'gulp-notify'
 
-import sass from 'gulp-sass'
-import autoprefixer from 'gulp-autoprefixer'
+
 import uglify from 'gulp-uglify'
 import rename from 'gulp-rename'
 import buffer from 'vinyl-buffer'
@@ -27,14 +26,13 @@ import istanbul from 'gulp-istanbul'
 import { Instrumenter } from 'isparta'
 import runSequence from 'run-sequence'
 
-function handleErrors() {
-  var args = Array.prototype.slice.call(arguments);
-  notify.onError({
-    title: 'Compile Error',
-    message: '<%= error.message %>'
-  }).apply(this, args);
-  this.emit('end'); // Keep gulp from hanging on this task
-}
+
+import requireDir from 'require-dir';
+requireDir('./gulp_tasks');
+
+import utils from './utils'
+let handleErrors = utils.handleErrors;
+
 
 function buildScript(file, watch) {
   var props = {
@@ -70,21 +68,6 @@ function buildScript(file, watch) {
   return rebundle();
 }
 
-/*
-  Styles Task
-*/
-
-gulp.task('styles', () => {
-  gulp.src('./styles/**/*.scss')
-    .pipe(sass({
-      outputStyle: 'compressed'
-    }))
-    .on('error', handleErrors)
-    .pipe(autoprefixer('last 2 version', 'safari 5', 'ie 9', 'ff 17', 'opera 12.1', 'ios 6', 'android 4'))
-    .on('error', handleErrors)
-    .pipe(gulp.dest('./build/'))
-    .pipe(reload({stream:true}))
-});
 
 /*
   Copy over assets
@@ -148,19 +131,21 @@ gulp.task('test', () => {
 /**
  * Run unit tests with code coverage
  */
-gulp.task('test:coverage', (done) => {
+gulp.task('test:coverage', done => {
   runSequence('coverage:instrument', 'test', 'coverage:report', done);
 });
 
 /**
  * Watch files and run unit tests on changes
  */
-gulp.task('tdd', (done) => {
-  gulp.watch([
-    TEST_FILES,
-    SRC_FILES
-  ], ['test']).on('error', gutil.log);
+gulp.task('tdd', done => {
+    gulp.watch([
+        TEST_FILES,
+        SRC_FILES
+    ], ['test']).on('error', gutil.log);
 });
+
+
 
 // run 'scripts' task first, then watch for future changes
 gulp.task('default', ['assets','styles','scripts','browser-sync'], () => {
