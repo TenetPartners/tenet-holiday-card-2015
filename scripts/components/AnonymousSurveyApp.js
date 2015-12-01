@@ -4,9 +4,13 @@
 
 import React from 'react'
 import update from 'react-addons-update'
+import Rebase from 're-base'
 import Intro from './Intro'
 import Question from './Question'
-import questions from '../questions'
+// import questions from '../questions'
+import config from '../config'
+
+var base = Rebase.createClass(config.firebaseUrl);
 
 class AnonymousSurveyApp extends React.Component {
 
@@ -14,7 +18,8 @@ class AnonymousSurveyApp extends React.Component {
     super();
     this.state = {
       surveyClosed: false,
-      questions: questions.getSurveyQuestions(), // TODO: would prefer to simply use require('../questions') but don't know how to mock that in tests
+      questions: {},
+      // questions: questions.getSurveyQuestions(), // TODO: would prefer to simply use require('../questions') but don't know how to mock that in tests
       answers: {}
     }
 
@@ -27,10 +32,15 @@ class AnonymousSurveyApp extends React.Component {
     // }
   }
 
-  // componentDidMount() {
-    // this.setState({
-    //   questions: require('../questions')
-    // });
+  componentDidMount() {
+    this.firebaseRef = base.bindToState('questions', {
+      context: this,
+      state: 'questions'
+    });
+  }
+
+  // componentWillUnmount () { // So that we don't get listeners keep adding, we will unmount them
+  //   base.removeBinding(this.firebaseRef);
   // }
 
   getClassName() {
