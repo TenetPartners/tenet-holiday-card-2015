@@ -9,7 +9,6 @@ import expectJSX from 'expect-jsx';
 expect.extend(expectJSX);
 
 import AnonymousSurveyApp from '../AnonymousSurveyApp'
-import Firebase from 'firebase'
 // import Intro from '../Intro'
 // import Question from '../Question'
 import questions from '../../questions'
