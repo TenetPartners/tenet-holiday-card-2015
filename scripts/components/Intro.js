@@ -17,7 +17,7 @@ class Intro extends React.Component {
 Intro.propTypes = {
   text: React.PropTypes.string.isRequired,
   surveyClosed: React.PropTypes.bool,
-  surveyClosedText: React.PropTypes.string,
+  surveyClosedText: React.PropTypes.string
 }
 
 Intro.defaultProps = {
