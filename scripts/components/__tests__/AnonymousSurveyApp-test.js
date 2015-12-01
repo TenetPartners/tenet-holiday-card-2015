@@ -1,4 +1,5 @@
 import React from 'react'
+import update from 'react-addons-update'
 // import expect, { createSpy, spyOn, isSpy } from 'expect'
 import expect from 'expect'
 // import TestUtils, {createRenderer, Simulate, renderIntoDocument} from 'react-addons-test-utils'
@@ -8,9 +9,16 @@ import expectJSX from 'expect-jsx';
 expect.extend(expectJSX);
 
 import AnonymousSurveyApp from '../AnonymousSurveyApp'
+import Firebase from 'firebase'
 // import Intro from '../Intro'
 // import Question from '../Question'
 import questions from '../../questions'
+
+// let stub = sinon.createStubInstance(Firebase);
+// stub.child = function() {
+//   return '';
+// };
+// const fbRef = new Firebase('');
 
 sinon.stub(questions, 'getSurveyQuestions', function() {
   return {
@@ -37,6 +45,21 @@ sinon.stub(questions, 'getSurveyQuestions', function() {
 sinon.stub(AnonymousSurveyApp.prototype, 'componentDidMount', function() {
   this.state.questions = questions.getSurveyQuestions();
 });
+
+sinon.stub(AnonymousSurveyApp.prototype, 'updateResponseCount', function(question, optIndex) {
+  this.setState({
+    questions: update(this.state.questions, {
+      [question]: {
+        options: {
+          [optIndex]: {
+            responseCount: { $apply: function(x) { return x + 1 || 1; } }
+          }
+        }
+      }
+    })
+  });
+});
+
 
 describe('AnonymousSurveyApp', () => {
 
