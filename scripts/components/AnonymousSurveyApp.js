@@ -9,8 +9,10 @@ import Intro from './Intro'
 import Question from './Question'
 // import questions from '../questions'
 import config from '../config'
+import Firebase from 'firebase'
 
-var base = Rebase.createClass(config.firebaseUrl);
+const base = Rebase.createClass(config.firebaseUrl);
+const fbRef = new Firebase(config.firebaseUrl);
 
 class AnonymousSurveyApp extends React.Component {
 
@@ -33,7 +35,7 @@ class AnonymousSurveyApp extends React.Component {
   }
 
   componentDidMount() {
-    this.firebaseRef = base.bindToState('questions', {
+    this.rebaseRef = base.bindToState('questions', {
       context: this,
       state: 'questions'
     });
@@ -50,25 +52,37 @@ class AnonymousSurveyApp extends React.Component {
     return className;
   }
 
+  updateResponseCount(question, optIndex) {
+    // update firebase with new response
+    // setState is not required because questions tree is bound to state in componentDidMount
+    fbRef.child(`questions/${question}/options/${optIndex}/responseCount`).transaction(function(cur_value) {
+      return (cur_value || 0) + 1;
+    });
+  }
+
   selectOption(question, option) {
     let optIndex = this.state.questions[question].options.findIndex((opt) => opt.id === option);
 
     this.setState({
-      answers: update(this.state.answers, {[question]: {$set: option}}),
-      questions: update(this.state.questions, {
-        [question]: {
-          options: {
-            [optIndex]: {
-              responseCount: { $apply: function(x) { return x + 1 || 1; } }
-            }
-          }
-        }
-      })
-    })
+      answers: update(this.state.answers, {[question]: {$set: option}})
+      // questions: update(this.state.questions, {
+      //   [question]: {
+      //     options: {
+      //       [optIndex]: {
+      //         responseCount: { $apply: function(x) { return x + 1 || 1; } }
+      //       }
+      //     }
+      //   }
+      // })
+    });
+
+    this.updateResponseCount(question, optIndex);
+
+    // set localStorage of answers
   }
 
   renderQuestion(key) {
-    return <Question key={key} index={key} question={this.state.questions[key]} selectOption={this.selectOption.bind(this)} />
+    return <Question key={key} index={key} question={this.state.questions[key]} selectOption={this.selectOption.bind(this)} answers={this.state.answers} />
   }
 
   render() {

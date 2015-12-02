@@ -1,4 +1,5 @@
 import React from 'react'
+import update from 'react-addons-update'
 // import expect, { createSpy, spyOn, isSpy } from 'expect'
 import expect from 'expect'
 // import TestUtils, {createRenderer, Simulate, renderIntoDocument} from 'react-addons-test-utils'
@@ -19,8 +20,8 @@ sinon.stub(questions, 'getSurveyQuestions', function() {
       imageUrl: 'http://i.istockimg.com/sample-question1.jpg',
       options: [
         {id: 'opt1', title: 'opt1', imageUrl: ''},
-        {id: 'opt2', title: 'opt2', imageUrl: ''},
-        {id: 'opt3', title: 'opt3', imageUrl: ''}
+        {id: 'opt2', title: 'opt2', imageUrl: '', responseCount: 8},
+        {id: 'opt3', title: 'opt3', imageUrl: '', responseCount: 4}
       ]
     },
     q2: {
@@ -37,6 +38,21 @@ sinon.stub(questions, 'getSurveyQuestions', function() {
 sinon.stub(AnonymousSurveyApp.prototype, 'componentDidMount', function() {
   this.state.questions = questions.getSurveyQuestions();
 });
+
+sinon.stub(AnonymousSurveyApp.prototype, 'updateResponseCount', function(question, optIndex) {
+  this.setState({
+    questions: update(this.state.questions, {
+      [question]: {
+        options: {
+          [optIndex]: {
+            responseCount: { $apply: function(x) { return x + 1 || 1; } }
+          }
+        }
+      }
+    })
+  });
+});
+
 
 describe('AnonymousSurveyApp', () => {
 
@@ -61,10 +77,10 @@ describe('AnonymousSurveyApp', () => {
       // expect(this.result).toEqualJSX(expectedResult);
       // let container = TestUtils.findRenderedDOMComponentWithTag(this.result, 'div');
       var component = TestUtils.findRenderedDOMComponentWithTag(this.result, "div");
-      expect(component.props.className).toEqual("survey");
+      expect(component.className).toEqual("survey");
 
       component = TestUtils.findRenderedDOMComponentWithTag(this.result, "ul");
-      expect(component.props.className).toEqual("questions");
+      expect(component.className).toEqual("questions");
     });
   });
 
@@ -84,7 +100,7 @@ describe('AnonymousSurveyApp', () => {
     it('should output closed class when survey is closed', function() {
       this.result.setState({surveyClosed: true});
       var component = TestUtils.findRenderedDOMComponentWithClass(this.result, "survey");
-      expect(component.props.className).toEqual("survey closed");
+      expect(component.className).toEqual("survey closed");
     });
 
     it('stores questions', function() {

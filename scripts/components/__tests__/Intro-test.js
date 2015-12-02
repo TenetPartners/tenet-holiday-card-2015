@@ -23,7 +23,7 @@ describe('Intro', () => {
     });
 
     it('surveyClosed prop should be false by default', function() {
-      var res = renderIntoDocument(<Intro />);
+      var res = renderIntoDocument(<Intro text="hello" />);
       expect(res.props.surveyClosed).toEqual(false);
     });
 
