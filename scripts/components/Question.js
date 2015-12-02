@@ -9,7 +9,17 @@ import QuestionOption from './QuestionOption'
 class Question extends React.Component {
 
   renderQuestionOption(index) {
-    return <QuestionOption key={index} questionId={this.props.index} selectOption={this.props.selectOption.bind(this)} option={this.props.question.options[index]} />
+    let totalQuestionResponseCount = this.props.question.options.map(opt => opt.responseCount || 0).reduce((prev, cur) => prev + cur);
+    return (
+      <QuestionOption
+        key={index}
+        questionId={this.props.index}
+        selectOption={this.props.selectOption.bind(this)}
+        option={this.props.question.options[index]}
+        totalQuestionResponseCount={totalQuestionResponseCount}
+        answers={this.props.answers} />
+    )
+
     // var option = this.props.question.options[index];
     // return (
     //   <li className="option" onClick={this.props.selectOption.bind(null, this.props.index, option.id)}>
@@ -39,7 +49,8 @@ Question.propTypes = {
     imageUrl: React.PropTypes.string
   }).isRequired,
   index: React.PropTypes.string.isRequired,
-  selectOption: React.PropTypes.func.isRequired
+  selectOption: React.PropTypes.func.isRequired,
+  answers: React.PropTypes.object.isRequired
 }
 
 export default Question;

@@ -82,7 +82,7 @@ class AnonymousSurveyApp extends React.Component {
   }
 
   renderQuestion(key) {
-    return <Question key={key} index={key} question={this.state.questions[key]} selectOption={this.selectOption.bind(this)} />
+    return <Question key={key} index={key} question={this.state.questions[key]} selectOption={this.selectOption.bind(this)} answers={this.state.answers} />
   }
 
   render() {

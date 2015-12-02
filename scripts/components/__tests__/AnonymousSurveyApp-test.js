@@ -20,8 +20,8 @@ sinon.stub(questions, 'getSurveyQuestions', function() {
       imageUrl: 'http://i.istockimg.com/sample-question1.jpg',
       options: [
         {id: 'opt1', title: 'opt1', imageUrl: ''},
-        {id: 'opt2', title: 'opt2', imageUrl: ''},
-        {id: 'opt3', title: 'opt3', imageUrl: ''}
+        {id: 'opt2', title: 'opt2', imageUrl: '', responseCount: 8},
+        {id: 'opt3', title: 'opt3', imageUrl: '', responseCount: 4}
       ]
     },
     q2: {
