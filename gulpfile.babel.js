@@ -1,4 +1,4 @@
-const TEST_FILES = 'scripts/**/__tests__/**/*.js';
+// use  __dirname to get working directory
 const SRC_FILES = 'scripts/**/*.js';
 const BABEL_PRESETS = ["stage-0", "es2015", "react"];
 
@@ -27,56 +27,47 @@ import istanbul from 'gulp-istanbul'
 import { Instrumenter } from 'isparta'
 import runSequence from 'run-sequence'
 
-
-import requireDir from 'require-dir';
-requireDir('./gulp_tasks');
-
-import utils from './utils'
+require('require-dir')('./gulp_tasks');
+var utils = require('./gulp_tasks/utils');
 let handleErrors = utils.handleErrors;
 
+function buildScript(file, watch){
+    var props = {
+        entries: ['./scripts/' + file],
+        debug: true,
+        transform: [babelify.configure({presets: BABEL_PRESETS})]
+    };
 
-function buildScript(file, watch) {
-  var props = {
-    entries: ['./scripts/' + file],
-    debug : true,
-    transform:  [babelify.configure({presets: BABEL_PRESETS})]
-  };
+    // watchify() if watch requested, otherwise run browserify() once
+    var bundler = watch ? watchify(browserify(props)) : browserify(props);
+    var self = this;
+    function rebundle() {
+        var stream = bundler.bundle();
+        return stream
+            .on('error', handleErrors)
+            .pipe(source(file))
+            .pipe(gulp.dest('./build/'))
+            // If you also want to uglify it
+            // .pipe(buffer())
+            // .pipe(uglify())
+            // .pipe(rename('app.min.js'))
+            // .pipe(gulp.dest('./build'))
+            .pipe(reload({stream: true}))
+    }
 
-  // watchify() if watch requested, otherwise run browserify() once
-  var bundler = watch ? watchify(browserify(props)) : browserify(props);
+    // listen for an update and run rebundle
+    bundler.on('update', function () {
+        rebundle();
+        gutil.log('Rebundle...');
+    });
 
-  function rebundle() {
-    var stream = bundler.bundle();
-    return stream
-      .on('error', handleErrors)
-      .pipe(source(file))
-      .pipe(gulp.dest('./build/'))
-      // If you also want to uglify it
-      // .pipe(buffer())
-      // .pipe(uglify())
-      // .pipe(rename('app.min.js'))
-      // .pipe(gulp.dest('./build'))
-      .pipe(reload({stream:true}))
-  }
-
-  // listen for an update and run rebundle
-  bundler.on('update', function() {
-    rebundle();
-    gutil.log('Rebundle...');
-  });
-
-  // run it once the first time buildScript is called
-  return rebundle();
+    // run it once the first time buildScript is called
+    return rebundle();
 }
 
 
-/*
-  Copy over assets
-*/
-gulp.task('assets', () => {
-  gulp.src('./assets/**')
-    .pipe(gulp.dest('./build/assets/'))
-});
+
+
 
 /*
   Browser Sync
@@ -144,35 +135,6 @@ gulp.task('coverage:report', (done) => {
       // ...
     }));
 });
-
-/**
- * Run unit tests
- */
-gulp.task('test', () => {
-  return gulp.src(TEST_FILES, {read: false})
-    .pipe(mocha({
-      compilers: { js: babel },
-      require: [__dirname + '/lib/jsdom'] // Prepare environement for React/JSX testing
-    }));
-});
-
-/**
- * Run unit tests with code coverage
- */
-gulp.task('test:coverage', done => {
-  runSequence('coverage:instrument', 'test', 'coverage:report', done);
-});
-
-/**
- * Watch files and run unit tests on changes
- */
-gulp.task('tdd', done => {
-    gulp.watch([
-        TEST_FILES,
-        SRC_FILES
-    ], ['test']).on('error', gutil.log);
-});
-
 
 
 // run 'scripts' task first, then watch for future changes

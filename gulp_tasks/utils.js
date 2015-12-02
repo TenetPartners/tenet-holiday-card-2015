@@ -1,5 +1,4 @@
-var PLUGIN_NAME = 'utils';
-var utils = function utils() {
+module.exports = (() => {
     return {
         handleErrors: () => {
             var args = Array.prototype.slice.call(arguments);
@@ -10,4 +9,4 @@ var utils = function utils() {
             this.emit('end'); // Keep gulp from hanging on this task
         }
     }
-};
+})();

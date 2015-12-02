@@ -1,10 +1,14 @@
 import gulp from 'gulp'
 import sass from 'gulp-sass'
 import autoprefixer from 'gulp-autoprefixer'
-
 import utils from './utils'
 let handleErrors = utils.handleErrors;
+import browserSync from 'browser-sync'
+let reload = browserSync.reload;
 
+/*
+ Styles Task
+ */
 gulp.task('styles', () => {
     gulp.src('./styles/**/*.scss')
         .pipe(sass({
