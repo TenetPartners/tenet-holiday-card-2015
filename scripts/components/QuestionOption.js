@@ -9,10 +9,13 @@ class QuestionOption extends React.Component {
 
   renderChart(option) {
     var percentSelected = ((option.responseCount || 0) / this.props.totalQuestionResponseCount * 100).toFixed(0);
+    var selectedAnswer = this.props.answers[this.props.questionId] === option.id;
     return (
       <li className="option result">
         <span className="percentSelected">{percentSelected}%</span>
-        <div className="bar" style={{backgroundSize: percentSelected + '% 100%'}}>{option.title}</div>
+        <div className="bar" style={{backgroundSize: percentSelected + '% 100%'}}>{option.title}
+          {selectedAnswer ? <span className="selectedAnswer" title="You selected this option"></span> : null}
+        </div>
       </li>
     )
   }

@@ -12,92 +12,73 @@ import questions from '../../questions'
 
 describe('QuestionOption', () => {
 
+  function loadQuestionOption(questionId, optIndex, optionResponseCount, answers, totalQuestionResponseCount) {
+    let question = questions.getSurveyQuestions()[questionId];
+    let option = question.options[optIndex];
+    option.responseCount = optionResponseCount;
+    let renderer = createRenderer();
+    renderer.render(<QuestionOption option={option} selectOption={() => {}} questionId={questionId} answers={answers} totalQuestionResponseCount={totalQuestionResponseCount} />);
+    return renderer.getRenderOutput();
+  }
+
   describe('state', () => {
-    beforeEach(function() {
-      let question = questions.getSurveyQuestions().q1;
-      let option = question.options[1];
-      let answers = {
-        q1: "opt1"
-      };
-      let renderer = createRenderer();
-      renderer.render(<QuestionOption option={option} selectOption={() => {}} questionId="q1" answers={answers} totalQuestionResponseCount={12} />);
-      this.result = renderer.getRenderOutput();
-    });
 
     it('should show chart if survey is closed');
 
     it('should show chart if question has been answered', function() {
+      let result = loadQuestionOption('q1', 1, 8, {q1: 'opt1'}, 12);
       let expectedResult = (
         <li className="option result">
           <span className="percentSelected">67%</span>
           <div className="bar" style={{backgroundSize: '67% 100%'}}>opt2</div>
         </li>
       );
-      expect(this.result).toEqualJSX(expectedResult);
+      expect(result).toEqualJSX(expectedResult);
     });
 
     it('should show 100% if question has been answered and only one total response', function() {
-      let question = questions.getSurveyQuestions().q1;
-      let option = question.options[1];
-      option.responseCount = 1;
-      let answers = {
-        q1: "opt1"
-      };
-      let renderer = createRenderer();
-      renderer.render(<QuestionOption option={option} selectOption={() => {}} questionId="q1" answers={answers} totalQuestionResponseCount={1} />);
-      this.result = renderer.getRenderOutput();
-
+      let result = loadQuestionOption('q1', 1, 1, {q1: 'opt1'}, 1);
       let expectedResult = (
         <li className="option result">
           <span className="percentSelected">100%</span>
           <div className="bar" style={{backgroundSize: '100% 100%'}}>opt2</div>
         </li>
       );
-      expect(this.result).toEqualJSX(expectedResult);
+      expect(result).toEqualJSX(expectedResult);
     });
 
     it('should show 0% if question has been answered and only one total response', function() {
-      let question = questions.getSurveyQuestions().q1;
-      let option = question.options[1];
-      option.responseCount = 0;
-      let answers = {
-        q1: "opt1"
-      };
-      let renderer = createRenderer();
-      renderer.render(<QuestionOption option={option} selectOption={() => {}} questionId="q1" answers={answers} totalQuestionResponseCount={1} />);
-      this.result = renderer.getRenderOutput();
-
+      let result = loadQuestionOption('q1', 1, 0, {q1: 'opt1'}, 1);
       let expectedResult = (
         <li className="option result">
           <span className="percentSelected">0%</span>
           <div className="bar" style={{backgroundSize: '0% 100%'}}>opt2</div>
         </li>
       );
-      expect(this.result).toEqualJSX(expectedResult);
+      expect(result).toEqualJSX(expectedResult);
     });
 
-    it('should denote that the option has been selected');
+    it('should denote that the option has been selected', function() {
+      let result = loadQuestionOption('q1', 0, 1, {q1: 'opt1'}, 1);
+      let expectedResult = (
+        <li className="option result">
+          <span className="percentSelected">100%</span>
+          <div className="bar" style={{backgroundSize: '100% 100%'}}>opt1<span className="selectedAnswer" title="You selected this option"></span></div>
+        </li>
+      );
+      expect(result).toEqualJSX(expectedResult);
+    });
   });
 
   describe('structure and props', () => {
-    beforeEach(function() {
-      let question = questions.getSurveyQuestions().q1;
-      let option = question.options[0];
-      let answers = {
-        q2: "opt1"
-      };
-      let renderer = createRenderer();
-      renderer.render(<QuestionOption option={option} selectOption={() => {}} questionId="q1" answers={answers} totalQuestionResponseCount={0} />);
-      this.result = renderer.getRenderOutput();
-    });
-
     it('should allow the option to be selected if the question has not been answered', function() {
+      let result = loadQuestionOption('q1', 0, 0, {q2: 'opt1'}, 0);
       let expectedResult = (
         <li className="option" onClick={() => {}}>
           <span>opt1</span>
         </li>
       );
-      expect(this.result).toEqualJSX(expectedResult);
+      expect(result).toEqualJSX(expectedResult);
     });
 
     it('has option propType that is a required object', function() {

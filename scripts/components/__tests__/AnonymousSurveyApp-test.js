@@ -12,6 +12,7 @@ import AnonymousSurveyApp from '../AnonymousSurveyApp'
 // import Intro from '../Intro'
 // import Question from '../Question'
 import questions from '../../questions'
+import localStorage from 'localStorage'
 
 sinon.stub(questions, 'getSurveyQuestions', function() {
   return {
@@ -35,7 +36,7 @@ sinon.stub(questions, 'getSurveyQuestions', function() {
   }
 });
 
-sinon.stub(AnonymousSurveyApp.prototype, 'componentDidMount', function() {
+sinon.stub(AnonymousSurveyApp.prototype, 'bindWithFirebase', function() {
   this.state.questions = questions.getSurveyQuestions();
 });
 
@@ -61,6 +62,7 @@ describe('AnonymousSurveyApp', () => {
       // let renderer = createRenderer();
       // renderer.render(<AnonymousSurveyApp />);
       // this.result = renderer.getRenderOutput();
+      localStorage.setItem('answers', '');
       this.result = renderIntoDocument(<AnonymousSurveyApp />);
     });
 
@@ -86,8 +88,13 @@ describe('AnonymousSurveyApp', () => {
 
   describe('state', () => {
     beforeEach(function() {
+      localStorage.setItem('answers', '');
       this.result = renderIntoDocument(<AnonymousSurveyApp />);
     });
+    // afterEach(function() {
+    //   React.unmountComponentAtNode(document.body);
+    //   this.result = null;
+    // });
 
     it('stores the state of the app', function() {
       expect(this.result.state).toExist();
@@ -115,13 +122,22 @@ describe('AnonymousSurveyApp', () => {
       expect(this.result.state.answers).toBeA('object');
     })
 
-    it('should load answers from localStorage');
+    it('answers should be empty on first load', function() {
+      expect(this.result.state.answers).toEqual({});
+    });
+
+    it('should load answers from localStorage', function() {
+      let answers = { q1: 'opt1' };
+      localStorage.setItem('answers', JSON.stringify(answers));
+      let result = renderIntoDocument(<AnonymousSurveyApp />);
+      expect(result.state.answers).toEqual({ q1: 'opt1' });
+    });
 
     it('should have a selectOption function', function() {
       expect(this.result.selectOption).toExist();
     });
 
-    it('selecting an option should change the state of answers', function() {
+    it('selecting an option should change the state of answers and store in localStorage', function() {
       this.result.selectOption('q1', 'opt1');
       this.result.selectOption('q2', 'opt2');
       expect(this.result.state.answers.q1).toBe('opt1');
@@ -129,6 +145,8 @@ describe('AnonymousSurveyApp', () => {
       this.result.selectOption('q1', 'opt2');
       expect(this.result.state.answers.q1).toBe('opt2');
       expect(this.result.state.answers.q2).toBe('opt2');
+
+      expect(localStorage.getItem('answers')).toEqual(JSON.stringify({ q1: 'opt2', q2: 'opt2' }));
     });
 
     it('selecting an option should increment the option responseCount', function() {
