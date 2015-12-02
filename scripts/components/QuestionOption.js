@@ -9,7 +9,6 @@ class QuestionOption extends React.Component {
 
   renderChart(option) {
     var percentSelected = ((option.responseCount || 0) / this.props.totalQuestionResponseCount * 100).toFixed(0);
-    // var backgroundSize = `background-size: ${percentSelected}% 100%`;
     return (
       <li className="option result">
         <span className="percentSelected">{percentSelected}%</span>

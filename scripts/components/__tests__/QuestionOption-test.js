@@ -30,7 +30,7 @@ describe('QuestionOption', () => {
       let expectedResult = (
         <li className="option result">
           <span className="percentSelected">67%</span>
-          <div className="bar" style="background-size: 67% 100%">opt2</div>
+          <div className="bar" style={{backgroundSize: '67% 100%'}}>opt2</div>
         </li>
       );
       expect(this.result).toEqualJSX(expectedResult);
@@ -50,7 +50,7 @@ describe('QuestionOption', () => {
       let expectedResult = (
         <li className="option result">
           <span className="percentSelected">100%</span>
-          <div className="bar" style="background-size: 100% 100%">opt2</div>
+          <div className="bar" style={{backgroundSize: '100% 100%'}}>opt2</div>
         </li>
       );
       expect(this.result).toEqualJSX(expectedResult);
@@ -70,7 +70,7 @@ describe('QuestionOption', () => {
       let expectedResult = (
         <li className="option result">
           <span className="percentSelected">0%</span>
-          <div className="bar" style="background-size: 0% 100%">opt2</div>
+          <div className="bar" style={{backgroundSize: '0% 100%'}}>opt2</div>
         </li>
       );
       expect(this.result).toEqualJSX(expectedResult);
