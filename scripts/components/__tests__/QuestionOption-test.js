@@ -2,7 +2,7 @@ import React from 'react'
 // import expect, { createSpy, spyOn, isSpy } from 'expect'
 import expect from 'expect'
 // import {createRenderer, Simulate, renderIntoDocument} from 'react-addons-test-utils'
-import {createRenderer} from 'react-addons-test-utils'
+import {createRenderer, renderIntoDocument} from 'react-addons-test-utils'
 // import sinon from 'sinon'
 import expectJSX from 'expect-jsx';
 expect.extend(expectJSX);
@@ -12,18 +12,27 @@ import questions from '../../questions'
 
 describe('QuestionOption', () => {
 
-  function loadQuestionOption(questionId, optIndex, optionResponseCount, answers, totalQuestionResponseCount) {
+  function loadQuestionOption(questionId, optIndex, optionResponseCount, answers, totalQuestionResponseCount, surveyClosed = false) {
     let question = questions.getSurveyQuestions()[questionId];
     let option = question.options[optIndex];
     option.responseCount = optionResponseCount;
     let renderer = createRenderer();
-    renderer.render(<QuestionOption option={option} selectOption={() => {}} questionId={questionId} answers={answers} totalQuestionResponseCount={totalQuestionResponseCount} />);
+    renderer.render(<QuestionOption option={option} selectOption={() => {}} questionId={questionId} answers={answers} totalQuestionResponseCount={totalQuestionResponseCount} surveyClosed={surveyClosed} />);
     return renderer.getRenderOutput();
   }
 
   describe('state', () => {
 
-    it('should show chart if survey is closed');
+    it('should show chart if survey is closed', function() {
+      let result = loadQuestionOption('q1', 1, 8, {}, 12, true);
+      let expectedResult = (
+        <li className="option result">
+          <span className="percentSelected">67%</span>
+          <div className="bar" style={{backgroundSize: '67% 100%'}}>opt2</div>
+        </li>
+      );
+      expect(result).toEqualJSX(expectedResult);
+    });
 
     it('should show chart if question has been answered', function() {
       let result = loadQuestionOption('q1', 1, 8, {q1: 'opt1'}, 12);
@@ -109,6 +118,16 @@ describe('QuestionOption', () => {
     it('has answers propType that is a required object', function() {
       expect(QuestionOption.propTypes.answers).toExist();
       expect(QuestionOption.propTypes.answers).toBe(React.PropTypes.object.isRequired);
+    });
+
+    it('has surveyClosed propType that is an optional bool', function() {
+      expect(QuestionOption.propTypes.surveyClosed).toExist();
+      expect(QuestionOption.propTypes.surveyClosed).toBe(React.PropTypes.bool);
+    });
+
+    it('surveyClosed prop should be false by default', function() {
+      var res = renderIntoDocument(<QuestionOption option={{}} selectOption={() => {}} questionId={"q1"} answers={{}} totalQuestionResponseCount={0} />);
+      expect(res.props.surveyClosed).toEqual(false);
     });
   });
 });

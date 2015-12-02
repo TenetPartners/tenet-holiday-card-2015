@@ -21,7 +21,6 @@ class AnonymousSurveyApp extends React.Component {
     this.state = {
       surveyClosed: false,
       questions: {},
-      // questions: questions.getSurveyQuestions(), // TODO: would prefer to simply use require('../questions') but don't know how to mock that in tests
       answers: {}
     }
 
@@ -90,7 +89,7 @@ class AnonymousSurveyApp extends React.Component {
   }
 
   renderQuestion(key) {
-    return <Question key={key} index={key} question={this.state.questions[key]} selectOption={this.selectOption.bind(this)} answers={this.state.answers} />
+    return <Question key={key} index={key} question={this.state.questions[key]} selectOption={this.selectOption.bind(this)} answers={this.state.answers} surveyClosed={this.state.surveyClosed} />
   }
 
   render() {
