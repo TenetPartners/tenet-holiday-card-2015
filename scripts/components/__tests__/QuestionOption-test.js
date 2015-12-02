@@ -58,9 +58,9 @@ describe('QuestionOption', () => {
       expect(QuestionOption.propTypes.questionId).toBe(React.PropTypes.string.isRequired);
     });
 
-    it('has answers propType that is a required object', function() {
+    it('has answers propType that is an object', function() {
       expect(QuestionOption.propTypes.answers).toExist();
-      expect(QuestionOption.propTypes.answers).toBe(React.PropTypes.object.isRequired);
+      expect(QuestionOption.propTypes.answers).toBe(React.PropTypes.object);
     });
   });
 });

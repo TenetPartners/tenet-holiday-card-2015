@@ -13,12 +13,6 @@ import AnonymousSurveyApp from '../AnonymousSurveyApp'
 // import Question from '../Question'
 import questions from '../../questions'
 
-// let stub = sinon.createStubInstance(Firebase);
-// stub.child = function() {
-//   return '';
-// };
-// const fbRef = new Firebase('');
-
 sinon.stub(questions, 'getSurveyQuestions', function() {
   return {
     q1: {
@@ -83,10 +77,10 @@ describe('AnonymousSurveyApp', () => {
       // expect(this.result).toEqualJSX(expectedResult);
       // let container = TestUtils.findRenderedDOMComponentWithTag(this.result, 'div');
       var component = TestUtils.findRenderedDOMComponentWithTag(this.result, "div");
-      expect(component.props.className).toEqual("survey");
+      expect(component.className).toEqual("survey");
 
       component = TestUtils.findRenderedDOMComponentWithTag(this.result, "ul");
-      expect(component.props.className).toEqual("questions");
+      expect(component.className).toEqual("questions");
     });
   });
 
@@ -106,7 +100,7 @@ describe('AnonymousSurveyApp', () => {
     it('should output closed class when survey is closed', function() {
       this.result.setState({surveyClosed: true});
       var component = TestUtils.findRenderedDOMComponentWithClass(this.result, "survey");
-      expect(component.props.className).toEqual("survey closed");
+      expect(component.className).toEqual("survey closed");
     });
 
     it('stores questions', function() {
