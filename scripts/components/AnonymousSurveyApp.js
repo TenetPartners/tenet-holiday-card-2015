@@ -11,8 +11,8 @@ import Question from './Question'
 import config from '../config'
 import Firebase from 'firebase'
 
-const base = Rebase.createClass(config.firebaseUrl);
-const fbRef = new Firebase(config.firebaseUrl);
+// const base = Rebase.createClass(config.firebaseUrl);
+// const fbRef = new Firebase(config.firebaseUrl);
 
 class AnonymousSurveyApp extends React.Component {
 
@@ -25,17 +25,23 @@ class AnonymousSurveyApp extends React.Component {
       answers: {}
     }
 
-    // TODO: figure out how to test localStorage with jsdom
-    // var answers = localStorage.getItem('answers');
-    // if (answers) {
-    //   this.setState({
-    //     answers: JSON.parse(answers)
-    //   });
-    // }
+    this.base = Rebase.createClass(config.firebaseUrl);
+    this.fbRef = new Firebase(config.firebaseUrl);
   }
 
   componentDidMount() {
-    this.rebaseRef = base.bindToState('questions', {
+    this.bindWithFirebase();
+
+    var answers = localStorage.getItem('answers');
+    if (answers) {
+      this.setState({
+        answers: JSON.parse(answers)
+      });
+    }
+  }
+
+  bindWithFirebase() {
+    this.rebaseRef = this.base.bindToState('questions', {
       context: this,
       state: 'questions'
     });
@@ -55,7 +61,7 @@ class AnonymousSurveyApp extends React.Component {
   updateResponseCount(question, optIndex) {
     // update firebase with new response
     // setState is not required because questions tree is bound to state in componentDidMount
-    fbRef.child(`questions/${question}/options/${optIndex}/responseCount`).transaction(function(cur_value) {
+    this.fbRef.child(`questions/${question}/options/${optIndex}/responseCount`).transaction(function(cur_value) {
       return (cur_value || 0) + 1;
     });
   }
@@ -65,6 +71,7 @@ class AnonymousSurveyApp extends React.Component {
 
     this.setState({
       answers: update(this.state.answers, {[question]: {$set: option}})
+      // this isn't needed because we are updating the responseCount in Firebase
       // questions: update(this.state.questions, {
       //   [question]: {
       //     options: {
@@ -74,11 +81,12 @@ class AnonymousSurveyApp extends React.Component {
       //     }
       //   }
       // })
+    }, function() {
+      // set localStorage of answers
+      localStorage.setItem('answers', JSON.stringify(this.state.answers));
     });
 
     this.updateResponseCount(question, optIndex);
-
-    // set localStorage of answers
   }
 
   renderQuestion(key) {
