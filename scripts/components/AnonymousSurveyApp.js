@@ -27,6 +27,16 @@ class AnonymousSurveyApp extends React.Component {
     this.fbRef = new Firebase(config.firebaseUrl);
   }
 
+  componentWillMount() {
+    var token = localStorage.getItem('token');
+    if (token) {
+      this.fbRef.authWithCustomToken(token, this.authHandler.bind(this));
+    }
+    else {
+      this.loginAnonymously();
+    }
+  }
+
   componentDidMount() {
     this.bindWithFirebase();
 
@@ -36,6 +46,21 @@ class AnonymousSurveyApp extends React.Component {
         answers: JSON.parse(answers)
       });
     }
+  }
+
+  authHandler(err, authData) {
+    if (err) {
+      // console.err(err);
+      return;
+    }
+
+    // console.log("Authenticated successfully with payload:", authData);
+    // save the login token in the browser
+    localStorage.setItem('token', authData.token);
+  }
+
+  loginAnonymously() {
+    this.fbRef.authAnonymously(this.authHandler.bind(this));
   }
 
   bindWithFirebase() {

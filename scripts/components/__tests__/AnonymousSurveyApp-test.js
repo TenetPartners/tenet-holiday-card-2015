@@ -40,6 +40,8 @@ sinon.stub(AnonymousSurveyApp.prototype, 'bindWithFirebase', function() {
   this.state.questions = questions.getSurveyQuestions();
 });
 
+sinon.stub(AnonymousSurveyApp.prototype, 'loginAnonymously', function() {});
+
 sinon.stub(AnonymousSurveyApp.prototype, 'updateResponseCount', function(question, optIndex) {
   this.setState({
     questions: update(this.state.questions, {

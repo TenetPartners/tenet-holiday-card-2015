@@ -7,7 +7,8 @@
         "options": {
           "$opt_id": {
             "responseCount": {
-              ".write": "newData.isNumber() && // make sure the new value is a number
+              ".write": "auth !== null && auth.provider === 'anonymous' &&
+                         newData.isNumber() && // make sure the new value is a number
                          (
                            (!data.exists() && newData.val() === 1) || // if responseCount doesn't exist for this option, only allow it to be set to 1
                            (newData.val() === data.val() + 1) // ensure that if responseCount does exist, the new value should only increment by 1
