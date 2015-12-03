@@ -77,11 +77,13 @@ describe('AnonymousSurveyApp', () => {
       //   </div>
       // );
       // expect(this.result).toEqualJSX(expectedResult);
-      // let container = TestUtils.findRenderedDOMComponentWithTag(this.result, 'div');
-      var component = TestUtils.findRenderedDOMComponentWithTag(this.result, "div");
-      expect(component.className).toEqual("survey");
 
-      component = TestUtils.findRenderedDOMComponentWithTag(this.result, "ul");
+      let rootElement = React.findDOMNode(this.result);
+      expect(rootElement.tagName).toEqual('DIV');
+      expect(rootElement.classList.length).toEqual(1);
+      expect(rootElement.classList[0]).toEqual('survey');
+
+      let component = TestUtils.findRenderedDOMComponentWithTag(this.result, "ul");
       expect(component.className).toEqual("questions");
     });
   });
