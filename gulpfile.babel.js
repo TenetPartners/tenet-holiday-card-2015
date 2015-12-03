@@ -54,7 +54,6 @@ gulp.task('coverage:instruments', getTask('coverage:instruments'));
 gulp.task('coverage:report', getTask('coverage:report'));
 
 gulp.task('default', ['copy-assets', 'sass', 'eslint', 'scripts', 'browser-sync'], function () {
-    gulp.watch(configs.SRC_FILES, ['scripts']);
+    gulp.watch(configs.SRC_FILES, ['eslint', 'scripts']);
     gulp.watch('styles/**/*', ['sass']);
-    gulp.watch(configs.SRC_FILES, ['eslint']);
 });
