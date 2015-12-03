@@ -11,13 +11,7 @@ const SRC_FILES = 'scripts/**/*.js';
 /**
  * Run unit tests
  */
-gulp.task('test', () => {
-    return gulp.src(TEST_FILES, {read: false})
-        .pipe(mocha({
-            compilers: { js: babel },
-            require: ['./lib/jsdom'] // Prepare environement for React/JSX testing
-        }));
-});
+
 
 /**
  * Run unit tests with code coverage
@@ -29,9 +23,3 @@ gulp.task('test:coverage', (done) => {
 /**
  * Watch files and run unit tests on changes
  */
-gulp.task('tdd', (done) => {
-    gulp.watch([
-        TEST_FILES,
-        SRC_FILES
-    ], ['test']).on('error', gutil.log);
-});
