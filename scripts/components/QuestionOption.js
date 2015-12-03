@@ -8,7 +8,7 @@ import React from 'react'
 class QuestionOption extends React.Component {
 
   renderChart(option) {
-    var percentSelected = ((option.responseCount || 0) / this.props.totalQuestionResponseCount * 100).toFixed(0);
+    var percentSelected = this.props.totalQuestionResponseCount > 0 ? ((option.responseCount || 0) / this.props.totalQuestionResponseCount * 100).toFixed(0) : 0;
     var selectedAnswer = this.props.answers[this.props.questionId] === option.id;
     return (
       <li className="option result">
@@ -23,7 +23,7 @@ class QuestionOption extends React.Component {
   render() {
     var option = this.props.option;
 
-    if (this.props.answers && this.props.answers.hasOwnProperty(this.props.questionId)) {
+    if (this.props.surveyClosed || (this.props.answers && this.props.answers.hasOwnProperty(this.props.questionId))) {
       return this.renderChart(option);
     }
     return (
@@ -44,7 +44,12 @@ QuestionOption.propTypes = {
   selectOption: React.PropTypes.func.isRequired,
   questionId: React.PropTypes.string.isRequired,
   totalQuestionResponseCount: React.PropTypes.number.isRequired,
-  answers: React.PropTypes.object.isRequired
+  answers: React.PropTypes.object.isRequired,
+  surveyClosed: React.PropTypes.bool
+}
+
+QuestionOption.defaultProps = {
+  surveyClosed: false
 }
 
 export default QuestionOption;

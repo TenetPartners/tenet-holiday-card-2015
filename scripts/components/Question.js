@@ -8,35 +8,27 @@ import QuestionOption from './QuestionOption'
 
 class Question extends React.Component {
 
-  renderQuestionOption(index) {
-    let totalQuestionResponseCount = this.props.question.options.map(opt => opt.responseCount || 0).reduce((prev, cur) => prev + cur);
-    return (
-      <QuestionOption
-        key={index}
-        questionId={this.props.index}
-        selectOption={this.props.selectOption.bind(this)}
-        option={this.props.question.options[index]}
-        totalQuestionResponseCount={totalQuestionResponseCount}
-        answers={this.props.answers} />
-    )
-
-    // var option = this.props.question.options[index];
-    // return (
-    //   <li className="option" onClick={this.props.selectOption.bind(null, this.props.index, option.id)}>
-    //     <span>{option.title}</span>
-    //   </li>
-    // )
-  }
-
   render() {
-    var question = this.props.question;
+    let question = this.props.question;
+    let questionAnswered = this.props.answers.hasOwnProperty(this.props.index);
+    let totalQuestionResponseCount = question.options.map(opt => opt.responseCount || 0).reduce((prev, cur) => prev + cur);
 
     return (
       <li className="question">
         <h2>{question.question}</h2>
         <ul className="options">
-          {Object.keys(question.options).map(this.renderQuestionOption.bind(this))}
+          {Object.keys(question.options).map((opt) =>
+            <QuestionOption
+              key={opt}
+              questionId={this.props.index}
+              selectOption={this.props.selectOption.bind(this)}
+              option={this.props.question.options[opt]}
+              totalQuestionResponseCount={totalQuestionResponseCount}
+              answers={this.props.answers}
+              surveyClosed={this.props.surveyClosed} />
+          )}
         </ul>
+        {questionAnswered || this.props.surveyClosed ? <span className="totalResponses">{totalQuestionResponseCount} responses</span> : null}
       </li>
     )
   }
@@ -50,7 +42,12 @@ Question.propTypes = {
   }).isRequired,
   index: React.PropTypes.string.isRequired,
   selectOption: React.PropTypes.func.isRequired,
-  answers: React.PropTypes.object.isRequired
+  answers: React.PropTypes.object.isRequired,
+  surveyClosed: React.PropTypes.bool
+}
+
+Question.defaultProps = {
+  surveyClosed: false
 }
 
 export default Question;
