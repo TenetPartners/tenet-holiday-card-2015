@@ -5,7 +5,6 @@
 import React from 'react'
 import update from 'react-addons-update'
 import Rebase from 're-base'
-import Intro from './Intro'
 import Question from './Question'
 // import questions from '../questions'
 import config from '../config'
@@ -93,12 +92,18 @@ class AnonymousSurveyApp extends React.Component {
   }
 
   render() {
+    let intro = this.state.surveyClosed ? "Thank you for taking our holiday survey. Here's how everyone responded." : "Please answer the questions below and check back later for the full results.";
+
     return (
       <div className={this.getClassName()}>
-        <Intro surveyClosed={this.state.surveyClosed} text="Please answer the questions below and check back later for the full results." surveyClosedText="Thank you for taking our holiday survey. Here's how everyone responded."/>
+        <p className="intro">{intro}</p>
         <ul className="questions">
           {Object.keys(this.state.questions).map(this.renderQuestion.bind(this))}
         </ul>
+        <div className="conclusion">
+          <h2>And most importantly, how will you help brighten the holidays for those less fortunate?</h2>
+          <p>This season, Tenet Partners is making a donation to No Child Hungry on behalf of our clients and partners.</p>
+        </div>
       </div>
     )
   }
