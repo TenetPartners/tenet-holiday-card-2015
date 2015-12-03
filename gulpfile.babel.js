@@ -56,4 +56,5 @@ gulp.task('coverage:report', getTask('coverage:report'));
 gulp.task('default', ['copy-assets', 'sass', 'eslint', 'scripts', 'browser-sync'], function () {
     gulp.watch(configs.SRC_FILES, ['scripts']);
     gulp.watch('styles/**/*', ['sass']);
+    gulp.watch(configs.SRC_FILES, ['eslint']);
 });
