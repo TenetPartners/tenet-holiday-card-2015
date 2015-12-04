@@ -4,6 +4,8 @@ module.exports = (gulp, plugins, configs) => {
             .pipe(plugins.mocha({
                 compilers: {js: plugins.babel},
                 require: ['./lib/jsdom'] // Prepare environement for React/JSX testing
-            }));
+            })).once('end', function () {
+                if(!configs.isTdd) process.exit();
+            });
     }
 };

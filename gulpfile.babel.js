@@ -25,7 +25,9 @@ gulp.task('responsive-images', getTask('responsive-images'));
 gulp.task('test:coverage', getTask('test:coverage'));
 gulp.task('clean', getTask('clean'));
 
-gulp.task('deploy:stage', ['copy-assets', 'sass', 'eslint', 'scripts']);
+gulp.task('deploy:stage', () => {
+    plugins.runSequence('clean', ['copy-assets', 'sass', 'eslint', 'scripts']);
+});
 gulp.task('default', ['copy-assets', 'sass', 'eslint', 'scripts', 'browser-sync'], function () {
     gulp.watch(configs.SRC_FILES, ['eslint', 'scripts']);
     gulp.watch('styles/**/*', ['sass']);
