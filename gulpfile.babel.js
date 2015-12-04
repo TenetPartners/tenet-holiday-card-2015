@@ -7,29 +7,7 @@ var plugins = require('gulp-load-plugins')({
 });
 babel({presets: configs.BABEL_PRESETS});
 plugins.source = require('vinyl-source-stream');
-plugins.buildScript = (file, watch, plugins) => {
-    var props = {
-        entries: ['./scripts/' + file],
-        debug: true,
-        transform: [plugins.babelify.configure({presets: configs.BABEL_PRESETS})]
-    };
-    var bundler = watch ? plugins.watchify(plugins.browserify(props)) : plugins.browserify(props);
-
-    function rebundle() {
-        var stream = bundler.bundle();
-        return stream
-            .on('error', configs.handleErrors)
-            .pipe(plugins.source(file))
-            .pipe(gulp.dest('./build/'))
-            .pipe(plugins.browserSync.reload({stream: true}))
-    }
-    // listen for an update and run rebundle
-    bundler.on('update', function () {
-        rebundle();
-        gutil.log('Rebundle...');
-    });
-    return rebundle();
-};
+plugins.buildScript = configs.buildScript;
 
 function getTask(task) {
     return require('./gulp_tasks/' + task)(gulp, plugins, configs);
