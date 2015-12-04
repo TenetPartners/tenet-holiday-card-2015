@@ -21,7 +21,7 @@ class AnonymousSurveyApp extends React.Component {
       surveyClosed: false,
       questions: {},
       answers: {}
-    }
+    };
 
     this.base = Rebase.createClass(config.firebaseUrl);
     this.fbRef = new Firebase(config.firebaseUrl);
