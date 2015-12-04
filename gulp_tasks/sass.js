@@ -1,6 +1,6 @@
 module.exports = (gulp, plugins, configs) => {
     return () => {
-        gulp.src('./styles/**/*.scss')
+        return gulp.src('./styles/**/*.scss')
             .pipe(plugins.sass({
                 outputStyle: 'compressed'
             }))

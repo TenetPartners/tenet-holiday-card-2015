@@ -1,6 +1,6 @@
 module.exports = (gulp, plugins, configs) => {
     return () => {
-        gulp.src(configs.SRC_FILES)
+        return gulp.src(configs.SRC_FILES)
             .pipe(plugins.eslint({
                 baseConfig: {
                     "env": {

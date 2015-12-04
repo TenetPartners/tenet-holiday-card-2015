@@ -1,6 +1,6 @@
 module.exports = (gulp, plugins) => {
     return () => {
-        gulp.src('assets/images/**/2x/*.{png,jpg,gif}')
+        return gulp.src('assets/images/**/2x/*.{png,jpg,gif}')
             .pipe(plugins.responsive({
                 '**/*.png': [{
                     width: '50%'

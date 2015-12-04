@@ -22,12 +22,10 @@ gulp.task('scripts', getTask('scripts'));
 gulp.task('coverage:instrument', getTask('coverage:instrument'));
 gulp.task('coverage:report', getTask('coverage:report'));
 gulp.task('responsive-images', getTask('responsive-images'));
-gulp.task('test:coverage', getTask('test:coverage'));
 gulp.task('clean', getTask('clean'));
+gulp.task('test:coverage', getTask('test:coverage'));
+gulp.task('deploy:stage', getTask('deploy:stage'));
 
-gulp.task('deploy:stage', () => {
-    plugins.runSequence('clean', ['copy-assets', 'sass', 'eslint', 'scripts']);
-});
 gulp.task('default', ['copy-assets', 'sass', 'eslint', 'scripts', 'browser-sync'], function () {
     gulp.watch(configs.SRC_FILES, ['eslint', 'scripts']);
     gulp.watch('styles/**/*', ['sass']);
