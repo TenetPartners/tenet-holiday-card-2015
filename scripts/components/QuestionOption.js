@@ -12,10 +12,10 @@ class QuestionOption extends React.Component {
     var selectedAnswer = this.props.answers[this.props.questionId] === option.id;
     return (
       <li className="option result">
+        {selectedAnswer ? <span className="selectedAnswer" title="You selected this option"></span> : null}
+        <span>{option.title}</span>
         <span className="percentSelected">{percentSelected}%</span>
-        <div className="bar" style={{backgroundSize: percentSelected + '% 100%'}}>{option.title}
-          {selectedAnswer ? <span className="selectedAnswer" title="You selected this option"></span> : null}
-        </div>
+        <div className="meter"><span style={{width: percentSelected + '%'}}></span></div>
       </li>
     )
   }
