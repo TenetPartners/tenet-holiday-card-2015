@@ -13,3 +13,32 @@
     @include text-spec(22px, 26px);
   }
 }
+
+.totalResponses {
+  position: relative;
+}
+.responseCount {
+  display: inline-block;
+  margin-right: 5px;
+}
+.responseCount-enter {
+  display: inline-block;
+  transition: all .25s;
+  transform: translateY(100%);
+  opacity: 0;
+  &-active {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.responseCount-leave {
+  transition: all .25s;
+  transform: translateY(0);
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  &-active {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+}
