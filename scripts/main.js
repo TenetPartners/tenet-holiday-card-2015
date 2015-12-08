@@ -5,4 +5,3 @@ import '../lib/picturefill';
 import '../lib/polyfills';
 
 ReactDOM.render(<AnonymousSurveyApp/>, document.querySelector('#main'));
-alert('test');
