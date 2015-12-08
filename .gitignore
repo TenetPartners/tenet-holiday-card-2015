@@ -28,3 +28,5 @@ build
 node_modules
 
 .DS_Store
+aws-credentials.json
+.awspublish-holiday2015.tenetpartners.com

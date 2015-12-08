@@ -1,16 +1,19 @@
 import gulp from 'gulp';
 import babel from 'babel-core/register'
 
-let configs = require('./gulp_tasks/configs');
+
 var plugins = require('gulp-load-plugins')({
     pattern: '*'
 });
+let configs = require('./gulp-configs');
+configs.plugins = plugins;
+
 babel({presets: configs.BABEL_PRESETS});
 plugins.source = require('vinyl-source-stream');
 plugins.buildScript = configs.buildScript;
 
 function getTask(task) {
-    return require('./gulp_tasks/' + task)(gulp, plugins, configs);
+    return require('./tasks/' + task)(gulp, plugins, configs);
 }
 gulp.task('sass', getTask('sass'));
 gulp.task('copy-assets', getTask('copy-assets'));
@@ -24,6 +27,7 @@ gulp.task('coverage:report', getTask('coverage:report'));
 gulp.task('responsive-images', getTask('responsive-images'));
 gulp.task('clean', getTask('clean'));
 gulp.task('test:coverage', getTask('test:coverage'));
+gulp.task('awspublish', getTask('awspublish'));
 gulp.task('deploy:stage', getTask('deploy:stage'));
 
 gulp.task('default', ['copy-assets', 'sass', 'eslint', 'scripts', 'browser-sync'], function () {
