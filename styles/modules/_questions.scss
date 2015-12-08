@@ -13,12 +13,32 @@
     @include text-spec(22px, 26px);
   }
 }
-.options {
-  margin-top: 10px;
+
+.totalResponses {
+  position: relative;
 }
-.option {
-  cursor: pointer;
-  list-style-type: none;
-  @include text-spec(18px, 22px);
-  margin-bottom: 10px;
+.responseCount {
+  display: inline-block;
+  margin-right: 5px;
+}
+.responseCount-enter {
+  display: inline-block;
+  transition: all .25s;
+  transform: translateY(100%);
+  opacity: 0;
+  &-active {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.responseCount-leave {
+  transition: all .25s;
+  transform: translateY(0);
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  &-active {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
 }

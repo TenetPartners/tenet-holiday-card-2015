@@ -7,6 +7,7 @@ import {createRenderer, renderIntoDocument} from 'react-addons-test-utils'
 import expectJSX from 'expect-jsx';
 expect.extend(expectJSX);
 
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
 import Question from '../Question'
 import QuestionOption from '../QuestionOption'
 import questions from '../../questions'
@@ -60,7 +61,25 @@ describe('Question', () => {
             <QuestionOption answers={{ q1: 'opt1' }} questionId="q1" selectOption={() => {}} option={{id: 'opt2', imageUrl: '', responseCount: 8, title: 'opt2'}} totalQuestionResponseCount={12} surveyClosed={false} />
             <QuestionOption answers={{ q1: 'opt1' }} questionId="q1" selectOption={() => {}} option={{id: 'opt3', imageUrl: '', responseCount: 4, title: 'opt3'}} totalQuestionResponseCount={12} surveyClosed={false} />
           </ul>
-          <span className="totalResponses">{12} responses</span>
+          <span className="totalResponses">
+            <ReactCSSTransitionGroup
+              className="responseCount"
+              component="span"
+              transitionAppear={false}
+              transitionEnter={true}
+              transitionEnterTimeout={250}
+              transitionLeave={true}
+              transitionLeaveTimeout={250}
+              transitionName="responseCount"
+            >
+              <span>
+                12
+              </span>
+            </ReactCSSTransitionGroup>
+            <span>
+              responses
+            </span>
+          </span>
         </li>
       );
       expect(result).toEqualJSX(expectedResult);
@@ -76,7 +95,25 @@ describe('Question', () => {
             <QuestionOption answers={{}} questionId="q1" selectOption={() => {}} option={{id: 'opt2', imageUrl: '', responseCount: 8, title: 'opt2'}} totalQuestionResponseCount={12} surveyClosed={true} />
             <QuestionOption answers={{}} questionId="q1" selectOption={() => {}} option={{id: 'opt3', imageUrl: '', responseCount: 4, title: 'opt3'}} totalQuestionResponseCount={12} surveyClosed={true} />
           </ul>
-          <span className="totalResponses">{12} responses</span>
+          <span className="totalResponses">
+            <ReactCSSTransitionGroup
+              className="responseCount"
+              component="span"
+              transitionAppear={false}
+              transitionEnter={true}
+              transitionEnterTimeout={250}
+              transitionLeave={true}
+              transitionLeaveTimeout={250}
+              transitionName="responseCount"
+            >
+              <span>
+                12
+              </span>
+            </ReactCSSTransitionGroup>
+            <span>
+              responses
+            </span>
+          </span>
         </li>
       );
       expect(result).toEqualJSX(expectedResult);

@@ -4,13 +4,33 @@
 */
 
 import React from 'react'
+import CSSTransitionGroup from 'react-addons-css-transition-group'
 import QuestionOption from './QuestionOption'
 
 class Question extends React.Component {
 
+  renderResponseCount(totalQuestionResponseCount) {
+    let questionAnswered = this.props.answers.hasOwnProperty(this.props.index);
+    if (questionAnswered || this.props.surveyClosed) {
+      return (
+        <span className="totalResponses">
+          <CSSTransitionGroup
+              className="responseCount"
+              component="span"
+              transitionName="responseCount"
+              transitionLeaveTimeout={250}
+              transitionEnterTimeout={250}
+            >
+            <span key={totalQuestionResponseCount}>{totalQuestionResponseCount}</span>
+          </CSSTransitionGroup>
+          <span>responses</span>
+        </span>
+      )
+    }
+  }
+
   render() {
     let question = this.props.question;
-    let questionAnswered = this.props.answers.hasOwnProperty(this.props.index);
     let totalQuestionResponseCount = question.options.map(opt => opt.responseCount || 0).reduce((prev, cur) => prev + cur);
 
     return (
@@ -28,7 +48,7 @@ class Question extends React.Component {
               surveyClosed={this.props.surveyClosed} />
           )}
         </ul>
-        {questionAnswered || this.props.surveyClosed ? <span className="totalResponses">{totalQuestionResponseCount} responses</span> : null}
+        {this.renderResponseCount(totalQuestionResponseCount)}
       </li>
     )
   }
