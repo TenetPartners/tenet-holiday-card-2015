@@ -1,5 +1,5 @@
 module.exports = (gulp, plugins, configs) => {
     return () => {
-        return gulp.src('./assets/**').pipe(gulp.dest('./build/assets/'))
+        return gulp.src(['./assets/**', './index.html']).pipe(gulp.dest('./build/assets/'))
     };
 };
