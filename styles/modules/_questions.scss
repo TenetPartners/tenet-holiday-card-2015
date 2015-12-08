@@ -13,12 +13,3 @@
     @include text-spec(22px, 26px);
   }
 }
-.options {
-  margin-top: 10px;
-}
-.option {
-  cursor: pointer;
-  list-style-type: none;
-  @include text-spec(18px, 22px);
-  margin-bottom: 10px;
-}
