@@ -1,0 +1,56 @@
+.u-headlineCentered {
+  // &:before {
+  //   display: none;
+  // }
+  header {
+    text-align: center;
+    padding-bottom: 26px;
+    margin-bottom: 40px;
+    h1, h2 {
+      margin: 0 auto;
+      max-width: 850px;
+    }
+  }
+
+  @include breakpoint(max-width $breakpoint-3-column - 1) {
+    padding-top: 30px;
+  }
+  // &:after {
+  //   height: 18px;
+  // }
+  header {
+    position: relative;
+    border-bottom: solid 1px #000;
+
+    &:after {
+      content: "";
+      display: block;
+      width: 1px;
+      height: 18px;
+      background-color: #000;
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+    }
+
+    h1 {
+      margin-bottom: $gutter-width / 2;
+    }
+    h2 {
+      @include text-spec(25px, 32px);
+      font-family: $font-family-italic;
+      font-weight: normal;
+    }
+  }
+  @include breakpoint($breakpoint-3-column) {
+    &:after {
+      height: 55px;
+    }
+    header {
+      padding-bottom: 45px;
+      &:after {
+        height: 38px;
+      }
+    }
+  }
+}

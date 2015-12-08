@@ -1,0 +1,23 @@
+.header {
+  background-color: #000;
+  height: $header-height;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  text-align: center;
+  z-index: $zIndex-6--header;
+
+  @include breakpoint($breakpoint-2-column) {
+    height: $header-height-bp-2;
+    &:before {
+      content: "";
+      display: block;
+      width: 1px;
+      height: 25px;
+      background-color: #fff;
+      position: absolute;
+      top: 0;
+      left: 50%;
+    }
+  }
+}

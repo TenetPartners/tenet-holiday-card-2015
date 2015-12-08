@@ -1,0 +1,19 @@
+// element defaults only
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: $font-family-regular;
+  padding-top: $header-height;
+  // @include text-spec(18px, 30px, #999);
+  @include breakpoint($breakpoint-2-column) {
+    padding-top: $header-height-bp-2;
+  }
+}
+
+p {
+  margin-top: 0;
+  margin-bottom: $line-space;
+}

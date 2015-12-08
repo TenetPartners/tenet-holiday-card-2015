@@ -1,4 +1,5 @@
 var notify = require('gulp-notify');
+
 module.exports = {
     SRC_FILES: './scripts/**/*.js',
     BABEL_PRESETS: ["stage-0", "es2015", "react"],
