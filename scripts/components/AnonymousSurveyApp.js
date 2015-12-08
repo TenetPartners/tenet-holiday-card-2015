@@ -117,11 +117,15 @@ class AnonymousSurveyApp extends React.Component {
   }
 
   render() {
-    let intro = this.state.surveyClosed ? "Thank you for taking our holiday survey. Here's how everyone responded." : "Please answer the questions below and check back later for the full results.";
+    let introH1 = this.state.surveyClosed ? "Thank you for taking our holiday survey. Here's how everyone responded." : "Will brand innovation impact your 2015 holiday season or will you be sticking with tradition?";
+    let introH2 = this.state.surveyClosed ? "" : "Please answer the questions below and check back later for the full results.";
 
     return (
       <div className={this.getClassName()}>
-        <p className="intro">{intro}</p>
+        <header>
+          <h1>{introH1}</h1>
+          <h2>{introH2}</h2>
+        </header>
         <ul className="questions">
           {Object.keys(this.state.questions).map(this.renderQuestion.bind(this))}
         </ul>

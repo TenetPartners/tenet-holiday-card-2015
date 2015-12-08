@@ -1,0 +1,29 @@
+.main {
+  padding: $gutter-width * 2 $gutter-width;
+  position: relative;
+
+  &:after {
+    content: "";
+    display: block;
+    width: 1px;
+    height: 40px;
+    position: absolute;
+    top: 0;
+    left: 50%;
+    background-color: #000;
+  }
+
+  h1, h2, h3 {
+    margin: 0;
+  }
+
+  h1 {
+    @include text-spec(25px, 32px);
+    margin-bottom: 5px;
+  }
+
+  @include breakpoint($breakpoint-4-column + $gutter-width * 2) {
+    padding-left: 0;
+    padding-right: 0;
+  }
+}

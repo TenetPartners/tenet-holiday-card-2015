@@ -1,0 +1,49 @@
+// $font-size: 15px;
+$line-space: 30px;
+//
+// $gotham-light: 300;
+// $gotham-book: 400;
+
+$font-family-italic: 'Scala Web Regular Italic', 'Times-Italic';
+$font-family-light: 'Alright Sans Light', Arial;
+$font-family-regular: 'Alright Sans', Arial;
+$font-family-ultra: 'Alright Sans Ultra', Arial;
+
+@mixin text-spec($size: null, $line-height: null, $color: null, $weight: null) {
+  font-size: $size;
+  line-height: $line-height;
+  color: $color;
+  font-weight: $weight;
+}
+
+/*
+.alrightsansblack {
+  font-family: "Alright Sans Black";
+  font-style: normal;
+  font-weight: normal;
+}
+
+.alrightsansbold {
+  font-family: "Alright Sans";
+  font-style: normal;
+  font-weight: bold;
+}
+
+.alrightsanslight {
+  font-family: "Alright Sans Light";
+  font-style: normal;
+  font-weight: normal;
+}
+
+.alrightsansregular {
+  font-family: "Alright Sans";
+  font-style: normal;
+  font-weight: normal;
+}
+
+.alrightsansultra {
+  font-family: "Alright Sans Ultra";
+  font-style: normal;
+  font-weight: normal;
+}
+*/
