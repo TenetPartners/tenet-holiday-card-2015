@@ -1,8 +1,8 @@
 .main {
-  padding: $gutter-width * 2 $gutter-width;
+  padding: $gutter-width * 4 $gutter-width;
   position: relative;
 
-  &:after {
+  /*&:after {
     content: "";
     display: block;
     width: 1px;
@@ -11,7 +11,7 @@
     top: 0;
     left: 50%;
     background-color: #000;
-  }
+  }*/
 
   h1, h2, h3 {
     margin: 0;
