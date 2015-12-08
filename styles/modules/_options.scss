@@ -7,6 +7,9 @@
   @include text-spec(18px, 22px);
   margin-bottom: 10px;
   position: relative;
+  &.result {
+    cursor: default;
+  }
 }
 .percentSelected {
   position: absolute;
