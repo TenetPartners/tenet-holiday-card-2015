@@ -27,8 +27,9 @@ describe('QuestionOption', () => {
       let result = loadQuestionOption('q1', 1, 8, {}, 12, true);
       let expectedResult = (
         <li className="option result">
+          <span>opt2</span>
           <span className="percentSelected">67%</span>
-          <div className="bar" style={{backgroundSize: '67% 100%'}}>opt2</div>
+          <div className="meter"><span style={{width: '67%'}}></span></div>
         </li>
       );
       expect(result).toEqualJSX(expectedResult);
@@ -38,8 +39,9 @@ describe('QuestionOption', () => {
       let result = loadQuestionOption('q1', 1, 8, {q1: 'opt1'}, 12);
       let expectedResult = (
         <li className="option result">
+          <span>opt2</span>
           <span className="percentSelected">67%</span>
-          <div className="bar" style={{backgroundSize: '67% 100%'}}>opt2</div>
+          <div className="meter"><span style={{width: '67%'}}></span></div>
         </li>
       );
       expect(result).toEqualJSX(expectedResult);
@@ -49,8 +51,9 @@ describe('QuestionOption', () => {
       let result = loadQuestionOption('q1', 1, 1, {q1: 'opt1'}, 1);
       let expectedResult = (
         <li className="option result">
+          <span>opt2</span>
           <span className="percentSelected">100%</span>
-          <div className="bar" style={{backgroundSize: '100% 100%'}}>opt2</div>
+          <div className="meter"><span style={{width: '100%'}}></span></div>
         </li>
       );
       expect(result).toEqualJSX(expectedResult);
@@ -60,8 +63,9 @@ describe('QuestionOption', () => {
       let result = loadQuestionOption('q1', 1, 0, {q1: 'opt1'}, 1);
       let expectedResult = (
         <li className="option result">
+          <span>opt2</span>
           <span className="percentSelected">0%</span>
-          <div className="bar" style={{backgroundSize: '0% 100%'}}>opt2</div>
+          <div className="meter"><span style={{width: '0%'}}></span></div>
         </li>
       );
       expect(result).toEqualJSX(expectedResult);
@@ -71,8 +75,10 @@ describe('QuestionOption', () => {
       let result = loadQuestionOption('q1', 0, 1, {q1: 'opt1'}, 1);
       let expectedResult = (
         <li className="option result">
+          <span className="selectedAnswer" title="You selected this option"></span>
+          <span>opt1</span>
           <span className="percentSelected">100%</span>
-          <div className="bar" style={{backgroundSize: '100% 100%'}}>opt1<span className="selectedAnswer" title="You selected this option"></span></div>
+          <div className="meter"><span style={{width: '100%'}}></span></div>
         </li>
       );
       expect(result).toEqualJSX(expectedResult);
