@@ -28,9 +28,9 @@ describe('Question', () => {
         <li className="question">
           <h2>What day is it?</h2>
           <ul className="options">
-            <QuestionOption answers={{}} questionId="q1" selectOption={() => {}} option={{id: 'opt1', imageUrl: '', title: 'opt1'}} totalQuestionResponseCount={12} surveyClosed={false} />
-            <QuestionOption answers={{}} questionId="q1" selectOption={() => {}} option={{id: 'opt2', imageUrl: '', responseCount: 8, title: 'opt2'}} totalQuestionResponseCount={12} surveyClosed={false} />
-            <QuestionOption answers={{}} questionId="q1" selectOption={() => {}} option={{id: 'opt3', imageUrl: '', responseCount: 4, title: 'opt3'}} totalQuestionResponseCount={12} surveyClosed={false} />
+            <QuestionOption answers={{}} questionId="q1" selectOption={() => {}} option={{id: 'opt1', imageUrl: '', title: 'opt1'}} totalQuestionResponseCount={12} surveyClosed={false} rank={2} />
+            <QuestionOption answers={{}} questionId="q1" selectOption={() => {}} option={{id: 'opt2', imageUrl: '', responseCount: 8, title: 'opt2'}} totalQuestionResponseCount={12} surveyClosed={false} rank={0} />
+            <QuestionOption answers={{}} questionId="q1" selectOption={() => {}} option={{id: 'opt3', imageUrl: '', responseCount: 4, title: 'opt3'}} totalQuestionResponseCount={12} surveyClosed={false} rank={1} />
           </ul>
         </li>
       );
@@ -43,8 +43,8 @@ describe('Question', () => {
         <li className="question">
           <h2>What time is it?</h2>
           <ul className="options">
-            <QuestionOption answers={{}} questionId="q2" selectOption={() => {}} option={{id: 'opt1', imageUrl: '', title: 'opt1'}} totalQuestionResponseCount={0} surveyClosed={false} />
-            <QuestionOption answers={{}} questionId="q2" selectOption={() => {}} option={{id: 'opt2', imageUrl: '', title: 'opt2'}} totalQuestionResponseCount={0} surveyClosed={false} />
+            <QuestionOption answers={{}} questionId="q2" selectOption={() => {}} option={{id: 'opt1', imageUrl: '', title: 'opt1'}} totalQuestionResponseCount={0} surveyClosed={false} rank={0} />
+            <QuestionOption answers={{}} questionId="q2" selectOption={() => {}} option={{id: 'opt2', imageUrl: '', title: 'opt2'}} totalQuestionResponseCount={0} surveyClosed={false} rank={0} />
           </ul>
         </li>
       );
@@ -57,9 +57,9 @@ describe('Question', () => {
         <li className="question">
           <h2>What day is it?</h2>
           <ul className="options">
-            <QuestionOption answers={{ q1: 'opt1' }} questionId="q1" selectOption={() => {}} option={{id: 'opt1', imageUrl: '', title: 'opt1'}} totalQuestionResponseCount={12} surveyClosed={false} />
-            <QuestionOption answers={{ q1: 'opt1' }} questionId="q1" selectOption={() => {}} option={{id: 'opt2', imageUrl: '', responseCount: 8, title: 'opt2'}} totalQuestionResponseCount={12} surveyClosed={false} />
-            <QuestionOption answers={{ q1: 'opt1' }} questionId="q1" selectOption={() => {}} option={{id: 'opt3', imageUrl: '', responseCount: 4, title: 'opt3'}} totalQuestionResponseCount={12} surveyClosed={false} />
+            <QuestionOption answers={{ q1: 'opt1' }} questionId="q1" selectOption={() => {}} option={{id: 'opt1', imageUrl: '', title: 'opt1'}} totalQuestionResponseCount={12} surveyClosed={false} rank={2} />
+            <QuestionOption answers={{ q1: 'opt1' }} questionId="q1" selectOption={() => {}} option={{id: 'opt2', imageUrl: '', responseCount: 8, title: 'opt2'}} totalQuestionResponseCount={12} surveyClosed={false} rank={0} />
+            <QuestionOption answers={{ q1: 'opt1' }} questionId="q1" selectOption={() => {}} option={{id: 'opt3', imageUrl: '', responseCount: 4, title: 'opt3'}} totalQuestionResponseCount={12} surveyClosed={false} rank={1} />
           </ul>
           <span className="totalResponses">
             <ReactCSSTransitionGroup
@@ -91,9 +91,9 @@ describe('Question', () => {
         <li className="question">
           <h2>What day is it?</h2>
           <ul className="options">
-            <QuestionOption answers={{}} questionId="q1" selectOption={() => {}} option={{id: 'opt1', imageUrl: '', title: 'opt1'}} totalQuestionResponseCount={12} surveyClosed={true} />
-            <QuestionOption answers={{}} questionId="q1" selectOption={() => {}} option={{id: 'opt2', imageUrl: '', responseCount: 8, title: 'opt2'}} totalQuestionResponseCount={12} surveyClosed={true} />
-            <QuestionOption answers={{}} questionId="q1" selectOption={() => {}} option={{id: 'opt3', imageUrl: '', responseCount: 4, title: 'opt3'}} totalQuestionResponseCount={12} surveyClosed={true} />
+            <QuestionOption answers={{}} questionId="q1" selectOption={() => {}} option={{id: 'opt1', imageUrl: '', title: 'opt1'}} totalQuestionResponseCount={12} surveyClosed={true} rank={2} />
+            <QuestionOption answers={{}} questionId="q1" selectOption={() => {}} option={{id: 'opt2', imageUrl: '', responseCount: 8, title: 'opt2'}} totalQuestionResponseCount={12} surveyClosed={true} rank={0} />
+            <QuestionOption answers={{}} questionId="q1" selectOption={() => {}} option={{id: 'opt3', imageUrl: '', responseCount: 4, title: 'opt3'}} totalQuestionResponseCount={12} surveyClosed={true} rank={1} />
           </ul>
           <span className="totalResponses">
             <ReactCSSTransitionGroup

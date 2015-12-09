@@ -14,6 +14,10 @@
 .percentSelected {
   position: absolute;
   right: 0;
+
+  [data-rank="0"] & {
+    font-weight: bold;
+  }
 }
 
 .meter {
@@ -24,9 +28,16 @@
   span {
     display: block;
     height: 100%;
-    background-color: red;
     animation-name: expandWidth;
     animation-duration: 0.5s;
+
+    // output colors based on option rank
+    $rankColors: #cb000c, #385995, #4ca2c7;
+    @for $i from 1 through length($rankColors) {
+      [data-rank="#{$i - 1}"] & {
+        background-color: nth($rankColors, $i);
+      }
+    }
   }
 }
 @keyframes expandWidth {

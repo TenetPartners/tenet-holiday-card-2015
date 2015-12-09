@@ -9,6 +9,10 @@ import QuestionOption from './QuestionOption'
 
 class Question extends React.Component {
 
+  getOptionRank(rankedOptions, option) {
+    return rankedOptions.findIndex(opt => opt.responseCount === (option.responseCount || 0));
+  }
+
   renderResponseCount(totalQuestionResponseCount) {
     let questionAnswered = this.props.answers.hasOwnProperty(this.props.index);
     if (questionAnswered || this.props.surveyClosed) {
@@ -32,6 +36,9 @@ class Question extends React.Component {
   render() {
     let question = this.props.question;
     let totalQuestionResponseCount = question.options.map(opt => opt.responseCount || 0).reduce((prev, cur) => prev + cur);
+    let rankedOptions = question.options.map(opt => { return { id: opt.id, responseCount: opt.responseCount || 0 }}).sort((a, b) => {
+      return b.responseCount - a.responseCount;
+    });
 
     return (
       <li className="question">
@@ -45,7 +52,8 @@ class Question extends React.Component {
               option={this.props.question.options[opt]}
               totalQuestionResponseCount={totalQuestionResponseCount}
               answers={this.props.answers}
-              surveyClosed={this.props.surveyClosed} />
+              surveyClosed={this.props.surveyClosed}
+              rank={this.getOptionRank(rankedOptions, this.props.question.options[opt])} />
           )}
         </ul>
         {this.renderResponseCount(totalQuestionResponseCount)}
