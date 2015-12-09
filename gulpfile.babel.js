@@ -23,6 +23,7 @@ gulp.task('responsive-images', getTask('responsive-images'));
 gulp.task('clean', getTask('clean'));
 gulp.task('test:coverage', getTask('test:coverage'));
 gulp.task('awspublish', getTask('awspublish'));
+gulp.task('deploy:prepare', getTask('deploy:prepare'));
 gulp.task('deploy:stage', getTask('deploy:stage'));
 gulp.task('hash', getTask('hash'));
 gulp.task('hash-replace', getTask('hash-replace'));
