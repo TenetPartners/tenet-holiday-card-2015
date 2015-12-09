@@ -9,6 +9,8 @@ module.exports = {
         JS_SRC: './scripts/**/*.js',
         BABEL_PRESETS: ["stage-0", "es2015", "react"],
         TEST_FILES: './scripts/**/__tests__/**/*.js',
+        HTML_FILES: ['./**/*.html', '!./node_modules/**', '!./coverage/**', '!./assets/**', '!./build/**'],
+        BUILD_FOLDER: './build',
         browserifyMainJs: "main.js"
     },
     helpers: {

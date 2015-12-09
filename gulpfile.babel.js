@@ -14,6 +14,7 @@ function getTask(task) {
 
 gulp.task('sass', getTask('sass'));
 gulp.task('copy-assets', getTask('copy-assets'));
+gulp.task('copy-html', getTask('copy-html'));
 gulp.task('tdd', getTask('tdd'));
 gulp.task('test', getTask('test'));
 gulp.task('eslint', getTask('eslint'));
@@ -25,9 +26,16 @@ gulp.task('responsive-images', getTask('responsive-images'));
 gulp.task('clean', getTask('clean'));
 gulp.task('test:coverage', getTask('test:coverage'));
 gulp.task('awspublish', getTask('awspublish'));
+gulp.task('deploy:prepare', getTask('deploy:prepare'));
 gulp.task('deploy', getTask('deploy'));
+gulp.task('hash', getTask('hash'));
+gulp.task('hash-replace', getTask('hash-replace'));
 
-gulp.task('default', ['copy-assets', 'sass', 'eslint', 'scripts', 'browser-sync'], function () {
+gulp.task('default', function(done) {
+  plugins.runSequence('clean', ['copy-assets', 'copy-html', 'sass', 'eslint', 'scripts'], 'browser-sync', function() {
     gulp.watch(plugins.utilities.paths.JS_SRC, ['eslint', 'scripts']);
     gulp.watch('styles/**/*', ['sass']);
+    gulp.watch(plugins.utilities.paths.HTML_FILES, ['copy-html']);
+    done();
+  });
 });

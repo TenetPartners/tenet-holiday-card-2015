@@ -11,6 +11,6 @@ module.exports = (gulp, plugins, utilities) => {
             .on('error', function(e){utilities.helpers.handleErrors(e, this)})
             .pipe(plugins.autoprefixer('last 2 version', 'safari 5', 'ie 9', 'ff 17', 'opera 12.1', 'ios 6', 'android 4'))
             .on('error', function(e){utilities.helpers.handleErrors(e, this)})
-            .pipe(gulp.dest('./build/'))
+            .pipe(gulp.dest(utilities.paths.BUILD_FOLDER))
             .pipe(plugins.browserSync.reload({stream:true}));
 };

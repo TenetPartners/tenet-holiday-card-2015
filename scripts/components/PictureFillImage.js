@@ -7,9 +7,10 @@ import React from 'react'
 class PictureFillImage extends React.Component {
 
     constructor() {
-        this.state = {
-            surveyClosed: false
-        }
+      super();
+      this.state = {
+          surveyClosed: false
+      }
     }
 
     render() {

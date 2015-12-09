@@ -5,7 +5,7 @@ module.exports = (gulp, plugins, utilities) => {
                 Bucket: utilities.deployTarget[utilities.args.target]
             }
         });
-        return gulp.src(['./build/**/*', './index.html'])
+        return gulp.src([`${utilities.paths.BUILD_FOLDER}/**/*`])
             .pipe(plugins.awspublish.gzip())
             .pipe(publisher.publish())
             .pipe(publisher.sync())

@@ -11,6 +11,7 @@ body {
   @include breakpoint($breakpoint-2-column) {
     padding-top: $header-height-bp-2;
   }
+  // background-image: url('/assets/images/test/2x/logo.png');
 }
 
 p {

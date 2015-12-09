@@ -1,7 +1,9 @@
 module.exports = (gulp, plugins, utilities) => {
     return () => plugins.browserSync({
-        server : {},
-        serveStatic: ['./build'],
-        ghostMode: false
-      });
+      server : {
+        baseDir: utilities.paths.BUILD_FOLDER
+      },
+      //middleware : [ historyApiFallback() ],
+      ghostMode: false
+    });
 };
