@@ -1,10 +1,7 @@
-module.exports = (gulp, plugins, configs) => {
-    return () => {
-        return plugins.browserSync({
+module.exports = (gulp, plugins, utilities) => {
+    return () => plugins.browserSync({
         server : {},
-        //middleware : [ historyApiFallback() ]
         serveStatic: ['./build'],
         ghostMode: false
       });
-    };
 };

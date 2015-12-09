@@ -1,9 +1,7 @@
-module.exports = (gulp, plugins, configs) => {
-    return () => {
-        gulp.src(configs.SRC_FILES, {read: false})
-            .pipe(plugins.istanbul.writeReports())
-            .once('end', function () {
-                process.exit();
-            });
-    };
+module.exports = (gulp, plugins, utilities) => {
+    return () => gulp.src(utilities.paths.JS_SRC, {read: false})
+        .pipe(plugins.istanbul.writeReports())
+        .once('end', function () {
+            process.exit();
+        });
 };
