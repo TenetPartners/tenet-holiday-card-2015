@@ -130,8 +130,8 @@ class AnonymousSurveyApp extends React.Component {
           {Object.keys(this.state.questions).map(this.renderQuestion.bind(this))}
         </ul>
         <div className="conclusion">
-          <h2>And most importantly, how will you help brighten the holidays for those less fortunate?</h2>
-          <p>This season, Tenet Partners is making a donation to No Child Hungry on behalf of our clients and partners.</p>
+          <h2>And most importantly, how will <span className="redText">you</span> help brighten the holidays for those less fortunate?</h2>
+          <p>This season, Tenet Partners is making a donation to<br/> No Child Hungry on behalf of our clients and partners.</p>
         </div>
       </div>
     )

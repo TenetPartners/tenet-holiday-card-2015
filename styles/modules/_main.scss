@@ -26,4 +26,20 @@
     padding-left: 0;
     padding-right: 0;
   }
+  .conclusion{
+    border-bottom: 1px solid #000;
+    padding-bottom: 85px;
+    h2{
+      @include text-spec(40px, 46px);
+      text-align: center;
+      margin-bottom: 45px;
+      .redText{
+        color: #ff0000;
+      }
+    }
+    p{
+      @include text-spec(40px, 46px);
+      text-align: center;
+    }  
+  }
 }
