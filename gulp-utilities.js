@@ -16,8 +16,8 @@ module.exports = {
             gulpProc.emit('end');
             return require('gulp-notify').onError({
                 title: 'Compile Error',
-                message: "\n" + error.message
-            })
+                message: "\n" + error.formatted
+            }).apply(this, arguments);
         },
         buildScript: (file, watch, plugins, gulp) => {
             var props = {
@@ -32,7 +32,7 @@ module.exports = {
                 if (plugins.utilities.args._[0] == 'deploy')
                     return stream
                         .on('error', function (e) {
-                            plugins.configs.utils.handleErrors(e, this)
+                            plugins.utilities.helpers.handleErrors(e, this)
                         })
                         .pipe(plugins.source(file))
                         .pipe(plugins.buffer())
@@ -42,7 +42,7 @@ module.exports = {
                 else
                     return stream
                         .on('error', function (e) {
-                            plugins.configs.utils.handleErrors(e, this)
+                            plugins.utilities.helpers.handleErrors(e, this)
                         })
                         .pipe(plugins.source(file))
                         .pipe(gulp.dest('./build/'))

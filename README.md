@@ -27,7 +27,7 @@ Create a `__tests__` folder next to the scripts that you would like to run tests
 
 ### Deploying
 1. Create an AWS S3 bucket and get your credentials
-2. AWS credentials are read from a file located according to the AWS [API guidelines](https://docs.aws.amazon.com/AWSJavaScriptSDK/guide/node-configuring.html). (file located at `~/.aws/credentails`)
+2. AWS credentials are read from a file located according to the [AWS API guidelines](https://docs.aws.amazon.com/AWSJavaScriptSDK/guide/node-configuring.html). (file located at `~/.aws/credentails`)
 3. Add your AWS S3 bucket name to the object in ./gulp-utilities.js. You can add any key name you want i.e
 ```
     deployTarget: { // these should be aws s3 bucket names, called via gulp deploy --target={key}
