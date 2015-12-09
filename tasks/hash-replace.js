@@ -1,21 +1,12 @@
-module.exports = (gulp, plugins, configs) => {
-  // return done => {
-  //   var manifest = gulp.src(`./${configs.BUILD_FOLDER}/rev-manifest.json`);
-  //   return plugins.runSequence('hash', function() {
-  //     gulp.src([`${configs.BUILD_FOLDER}/**/*.html`, `${configs.BUILD_FOLDER}/**/*.css`, `${configs.BUILD_FOLDER}/**/*.js`])
-  //       .pipe(plugins.revReplace({manifest: manifest}))
-  //       .pipe(gulp.dest(configs.BUILD_FOLDER))
-  //     done();
-  //   });
-  // }
+module.exports = (gulp, plugins, utilities) => {
   return () => {
-    var manifest = gulp.src(`./${configs.BUILD_FOLDER}/rev-manifest.json`);
+    var manifest = gulp.src(`./${utilities.paths.BUILD_FOLDER}/rev-manifest.json`);
     return gulp.src([
-      `${configs.BUILD_FOLDER}/**/*.html`,
-      `${configs.BUILD_FOLDER}/**/*.css`,
-      `${configs.BUILD_FOLDER}/**/*.js`
+      `${utilities.paths.BUILD_FOLDER}/**/*.html`,
+      `${utilities.paths.BUILD_FOLDER}/**/*.css`,
+      `${utilities.paths.BUILD_FOLDER}/**/*.js`
     ])
       .pipe(plugins.revReplace({manifest: manifest}))
-      .pipe(gulp.dest(configs.BUILD_FOLDER))
+      .pipe(gulp.dest(utilities.paths.BUILD_FOLDER))
   };
 };

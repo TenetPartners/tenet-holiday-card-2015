@@ -1,7 +1,3 @@
-module.exports = (gulp, plugins, configs) => {
-  return () => {
-    return gulp.src(configs.HTML_FILES)
-      // .on('error', function(e){plugins.configs.utils.handleErrors(e, this)})
-      .pipe(gulp.dest(configs.BUILD_FOLDER))
-  };
+module.exports = (gulp, plugins, utilities) => {
+  return () => gulp.src(utilities.paths.HTML_FILES).pipe(gulp.dest(utilities.paths.BUILD_FOLDER));
 };

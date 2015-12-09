@@ -1,5 +1,3 @@
-module.exports = (gulp, plugins, configs) => {
-    return () => {
-        return gulp.src(configs.BUILD_FOLDER, {read: false}).pipe(plugins.clean());
-    };
+module.exports = (gulp, plugins, utilities) => {
+    return () => gulp.src(`${utilities.paths.BUILD_FOLDER}/**/*`, {read: false}).pipe(plugins.clean());
 };

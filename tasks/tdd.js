@@ -1,9 +1,9 @@
-module.exports = (gulp, plugins, configs)  => {
+module.exports = (gulp, plugins, utilities)  => {
     return () => {
-        configs.exitAfterTest = false;
+        utilities.exitAfterTest = false;
         return gulp.watch([
-            configs.TEST_FILES,
-            configs.SRC_FILES
+            utilities.paths.TEST_FILES,
+            utilities.paths.JS_SRC
         ], ['eslint', 'test']).on('error', plugins.util.log);
     };
 };

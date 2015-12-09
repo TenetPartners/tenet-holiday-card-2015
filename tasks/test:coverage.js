@@ -1,6 +1,6 @@
-module.exports = (gulp, plugins, configs) => {
+module.exports = (gulp, plugins, utilities) => {
     return done => {
-        configs.exitAfterTest = false;
+        utilities.exitAfterTest = false;
         return plugins.runSequence('coverage:instrument', 'test', 'coverage:report', done);
     }
 };

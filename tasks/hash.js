@@ -1,18 +1,18 @@
-module.exports = (gulp, plugins, configs) => {
+module.exports = (gulp, plugins, utilities) => {
   return () => {
     return gulp.src([
-      `${configs.BUILD_FOLDER}/**/*.css`,
-      `${configs.BUILD_FOLDER}/**/*.js`,
-      `${configs.BUILD_FOLDER}/**/*.png`,
-      `${configs.BUILD_FOLDER}/**/*.jpg`,
-      `${configs.BUILD_FOLDER}/**/*.gif`,
-      `${configs.BUILD_FOLDER}/**/*.ico`,
-      `${configs.BUILD_FOLDER}/**/*.svg`,
+      `${utilities.paths.BUILD_FOLDER}/**/*.css`,
+      `${utilities.paths.BUILD_FOLDER}/**/*.js`,
+      `${utilities.paths.BUILD_FOLDER}/**/*.png`,
+      `${utilities.paths.BUILD_FOLDER}/**/*.jpg`,
+      `${utilities.paths.BUILD_FOLDER}/**/*.gif`,
+      `${utilities.paths.BUILD_FOLDER}/**/*.ico`,
+      `${utilities.paths.BUILD_FOLDER}/**/*.svg`,
     ])
       .pipe(plugins.clean()) // delete original files
       .pipe(plugins.rev())
-      .pipe(gulp.dest(configs.BUILD_FOLDER))
+      .pipe(gulp.dest(utilities.paths.BUILD_FOLDER))
       .pipe(plugins.rev.manifest())
-      .pipe(gulp.dest(configs.BUILD_FOLDER));
+      .pipe(gulp.dest(utilities.paths.BUILD_FOLDER));
   };
 };

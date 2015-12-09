@@ -25,5 +25,18 @@ Create a `./assets` folder to place images, downloads, or other miscellaneous fi
 ### Testing
 Create a `__tests__` folder next to the scripts that you would like to run tests for. To enter test driven development mode, run `gulp tdd`. This will watch your test files and source files for changes and run tests automatically as a result. Run `gulp test` to run all tests once, or run `gulp test:coverage` for a complete code coverage report.
 
+### Deploying
+1. Create an AWS S3 bucket and get your credentials
+2. AWS credentials are read from a file located according to the [AWS API guidelines](https://docs.aws.amazon.com/AWSJavaScriptSDK/guide/node-configuring.html). (file located at `~/.aws/credentails`)
+3. Add your AWS S3 bucket name to the object in ./gulp-utilities.js. You can add any key name you want i.e
+```
+    deployTarget: { // these should be aws s3 bucket names, called via gulp deploy --target={key}
+        dev: "yourdevs3bucketname",
+        prod: "yourprod3bucketname",
+        another: "other"...
+    },
+```
+4. Now you can run `gulp deploy --target=dev` (or any other target name) and your project will be cleaned, built and deployed.
+
 ***
 Heavily inspired from [React for Beginners](https://github.com/wesbos/React-For-Beginners-Starter-Files) and [Testing ES6 React components with Gulp + Mocha + Istanbul](https://gist.github.com/yannickcr/6129327b31b27b14efc5).
