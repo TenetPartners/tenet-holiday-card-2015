@@ -2,16 +2,16 @@
   padding: $gutter-width * 4 $gutter-width;
   position: relative;
 
-  /*&:after {
+  &:after {
     content: "";
     display: block;
     width: 1px;
     height: 40px;
     position: absolute;
-    top: 0;
+    top: 42px;
     left: 50%;
     background-color: #000;
-  }*/
+  }
 
   h1, h2, h3 {
     margin: 0;
