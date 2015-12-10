@@ -14,4 +14,5 @@ addons:
     sources:
       - ubuntu-toolchain-r-test
     packages:
+      - libvips-tools
       - g++-4.8
