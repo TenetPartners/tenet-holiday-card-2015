@@ -16,3 +16,4 @@ addons:
     packages:
       - libvips-tools
       - g++-4.8
+after_failure: "cat /home/travis/build/TenetPartners/tenet-holiday-card-2015/npm-debug.log"
