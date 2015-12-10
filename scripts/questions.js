@@ -2,91 +2,171 @@ let questions = {
   getSurveyQuestions: function() {
     return {
       "q1" : {
-      "imageUrl" : "http://i.istockimg.com/file_thumbview_approve/36248396/5/stock-photo-36248396-blackened-cajun-sea-bass.jpg",
+      "image" : {
+        "defaultUrl" : "/assets/q1.svg",
+        "hoverUrl" : "/assets/q1-hover.gif",
+        "title" : "this is alt text"
+      },
       "options" : [ {
         "id" : "uber",
-        "imageUrl" : "",
-        "title" : "Uber"
+        "responseCount" : 73,
+        "title" : "Uber",
+        "image" : {
+          "defaultUrl" : "/assets/q1-opt1.svg",
+          "title" : "this is q1 opt1 alt text"
+        }
       }, {
         "id" : "lyft",
-        "imageUrl" : "",
-        "title" : "Lyft"
+        "responseCount" : 20,
+        "title" : "Lyft",
+        "image" : {
+          "defaultUrl" : "/assets/q1-opt2.svg",
+          "title" : "this is q1 opt2 alt text"
+        }
       }, {
-        "id" : "na",
-        "imageUrl" : "",
-        "title" : "Taxi/car"
+        "id" : "taxi",
+        "responseCount" : 12,
+        "title" : "Taxi/car",
+        "image" : {
+          "defaultUrl" : "/assets/q1-opt3.svg",
+          "title" : "this is q1 opt3 alt text"
+        }
       } ],
       "question" : "How will you get from one holiday party to the next?"
     },
     "q2" : {
-      "imageUrl" : "http://i.istockimg.com/file_thumbview_approve/36248396/5/stock-photo-36248396-blackened-cajun-sea-bass.jpg",
+      "image" : {
+        "defaultUrl" : "/assets/q2.svg",
+        "hoverUrl" : "/assets/q2-hover.gif",
+        "title" : "this is q2 alt text"
+      },
       "options" : [ {
         "id" : "itunes",
-        "imageUrl" : "",
-        "title" : "iTunes"
+        "responseCount" : 17,
+        "title" : "iTunes",
+        "image" : {
+          "defaultUrl" : "/assets/q2-opt1.svg",
+          "title" : "this is q2 opt1 alt text"
+        }
       }, {
         "id" : "spotify",
-        "imageUrl" : "",
-        "title" : "Spotify"
+        "responseCount" : 29,
+        "title" : "Spotify",
+        "image" : {
+          "defaultUrl" : "/assets/q2-opt2.svg",
+          "title" : "this is q2 opt2 alt text"
+        }
       }, {
         "id" : "pandora",
-        "imageUrl" : "",
-        "title" : "Pandora"
+        "responseCount" : 5,
+        "title" : "Pandora",
+        "image" : {
+          "defaultUrl" : "/assets/q2-opt3.svg",
+          "title" : "this is q2 opt3 alt text"
+        }
       } ],
       "question" : "Where will you build your perfect holiday playlist?"
     },
     "q3" : {
-      "imageUrl" : "http://i.istockimg.com/file_thumbview_approve/36248396/5/stock-photo-36248396-blackened-cajun-sea-bass.jpg",
+      "image" : {
+        "defaultUrl" : "/assets/q3.svg",
+        "hoverUrl" : "/assets/q3-hover.gif",
+        "title" : "this is q3 alt text"
+      },
       "options" : [ {
         "id" : "netflix",
-        "imageUrl" : "",
-        "title" : "Netflix"
+        "responseCount" : 10,
+        "title" : "Netflix",
+        "image" : {
+          "defaultUrl" : "/assets/q3-opt1.svg",
+          "title" : "this is q3 opt1 alt text"
+        }
       }, {
         "id" : "hulu",
-        "imageUrl" : "",
-        "title" : "Hulu"
+        "responseCount" : 7,
+        "title" : "Hulu",
+        "image" : {
+          "defaultUrl" : "/assets/q3-opt2.svg",
+          "title" : "this is q3 opt2 alt text"
+        }
       }, {
         "id" : "cable",
-        "imageUrl" : "",
-        "title" : "Network/Cable provider"
+        "responseCount" : 5,
+        "title" : "Network/Cable provider",
+        "image" : {
+          "defaultUrl" : "/assets/q3-opt3.svg",
+          "title" : "this is q3 opt3 alt text"
+        }
       } ],
       "question" : "Where will you stream your favorite holiday shows and movies?"
     },
     "q4" : {
-      "imageUrl" : "http://i.istockimg.com/file_thumbview_approve/36248396/5/stock-photo-36248396-blackened-cajun-sea-bass.jpg",
+      "image" : {
+        "defaultUrl" : "/assets/q4.svg",
+        "hoverUrl" : "/assets/q4-hover.gif",
+        "title" : "this is q4 alt text"
+      },
       "options" : [ {
         "id" : "amazon",
-        "imageUrl" : "",
-        "title" : "Amazon"
+        "responseCount" : 7,
+        "title" : "Amazon",
+        "image" : {
+          "defaultUrl" : "/assets/q4-opt1.svg",
+          "title" : "this is q4 opt1 alt text"
+        }
       }, {
         "id" : "alibaba",
-        "imageUrl" : "",
-        "title" : "Alibaba"
+        "responseCount" : 5,
+        "title" : "Alibaba",
+        "image" : {
+          "defaultUrl" : "/assets/q4-opt2.svg",
+          "title" : "this is q4 opt2 alt text"
+        }
       }, {
         "id" : "retail",
-        "imageUrl" : "",
-        "title" : "Direct retailer"
+        "responseCount" : 2,
+        "title" : "Direct retailer",
+        "image" : {
+          "defaultUrl" : "/assets/q4-opt3.svg",
+          "title" : "this is q4 opt3 alt text"
+        }
       } ],
       "question" : "Where are you going to do your online holiday shopping?"
     },
     "q5" : {
-      "imageUrl" : "http://i.istockimg.com/file_thumbview_approve/36248396/5/stock-photo-36248396-blackened-cajun-sea-bass.jpg",
+      "image" : {
+        "defaultUrl" : "/assets/q5.svg",
+        "hoverUrl" : "/assets/q5-hover.gif",
+        "title" : "this is q5 alt text"
+      },
       "options" : [ {
         "id" : "snapchat",
-        "imageUrl" : "",
-        "title" : "Snapchat"
+        "responseCount" : 4,
+        "title" : "Snapchat",
+        "image" : {
+          "defaultUrl" : "/assets/q5-opt1.svg",
+          "title" : "this is q5 opt1 alt text"
+        }
       }, {
         "id" : "facebook",
-        "imageUrl" : "",
-        "title" : "Facebook"
+        "responseCount" : 4,
+        "title" : "Facebook",
+        "image" : {
+          "defaultUrl" : "/assets/q5-opt2.svg",
+          "title" : "this is q5 opt2 alt text"
+        }
       }, {
         "id" : "album",
-        "imageUrl" : "",
-        "title" : "Photo album"
+        "responseCount" : 2,
+        "title" : "Photo album",
+        "image" : {
+          "defaultUrl" : "/assets/q5-opt3.svg",
+          "title" : "this is q5 opt3 alt text"
+        }
       } ],
       "question" : "How will you share you holiday memories with family and friends?"
     }
-    }
+  }
   }
 }
 

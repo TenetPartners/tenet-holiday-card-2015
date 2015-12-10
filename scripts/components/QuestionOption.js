@@ -39,7 +39,10 @@ QuestionOption.propTypes = {
     id: React.PropTypes.string.isRequired,
     title: React.PropTypes.string.isRequired,
     responseCount: React.PropTypes.number,
-    imageUrl: React.PropTypes.string
+    image: React.PropTypes.shape({
+      defaultUrl: React.PropTypes.string.isRequired,
+      title: React.PropTypes.string.isRequired
+    }).isRequired
   }).isRequired,
   selectOption: React.PropTypes.func.isRequired,
   questionId: React.PropTypes.string.isRequired,

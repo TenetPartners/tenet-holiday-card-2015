@@ -18,19 +18,42 @@ sinon.stub(questions, 'getSurveyQuestions', function() {
   return {
     q1: {
       question: 'What day is it?',
-      imageUrl: 'http://i.istockimg.com/sample-question1.jpg',
+      image: {
+        defaultUrl: '/assets/q1.svg',
+        hoverUrl: '/assets/q1-hover.gif',
+        title: 'this is alt text'
+      },
       options: [
-        {id: 'opt1', title: 'opt1', imageUrl: ''},
-        {id: 'opt2', title: 'opt2', imageUrl: '', responseCount: 8},
-        {id: 'opt3', title: 'opt3', imageUrl: '', responseCount: 4}
+        {id: 'opt1', title: 'opt1', image: {
+          defaultUrl: '/assets/q1-opt1.svg',
+          title: 'this is opt1 alt text'
+        }},
+        {id: 'opt2', title: 'opt2', image: {
+          defaultUrl: '/assets/q1-opt2.svg',
+          title: 'this is opt2 alt text'
+        }, responseCount: 8},
+        {id: 'opt3', title: 'opt3', image: {
+          defaultUrl: '/assets/q1-opt3.svg',
+          title: 'this is opt3 alt text'
+        }, responseCount: 4}
       ]
     },
     q2: {
       question: 'What time is it?',
-      imageUrl: 'http://i.istockimg.com/sample-question2.jpg',
+      image: {
+        defaultUrl: '/assets/q2.svg',
+        hoverUrl: '/assets/q2-hover.gif',
+        title: 'this is alt text 2'
+      },
       options: [
-        {id: 'opt1', title: 'opt1', imageUrl: ''},
-        {id: 'opt2', title: 'opt2', imageUrl: ''}
+        {id: 'opt1', title: 'opt1', image: {
+          defaultUrl: '/assets/q2-opt1.svg',
+          title: 'this is q2 opt1 alt text'
+        }},
+        {id: 'opt2', title: 'opt2', image: {
+          defaultUrl: '/assets/q2-opt2.svg',
+          title: 'this is q2 opt2 alt text'
+        }}
       ]
     }
   }
