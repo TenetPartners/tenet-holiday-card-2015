@@ -4,15 +4,11 @@
   // }
   header {
     text-align: center;
-    padding-bottom: 40px;
+    padding-bottom: 30px;
     margin-bottom: 40px;
     h1, h2 {
       margin: 0 auto;
     }
-  }
-
-  @include breakpoint(max-width $breakpoint-3-column - 1) {
-    padding-top: 30px;
   }
   // &:after {
   //   height: 18px;
@@ -29,49 +25,47 @@
       height: 18px;
       background-color: #000;
       position: absolute;
-      bottom: -39px;
+      bottom: -19px;
       left: 50%;
     }
 
     h1 {
-      margin-bottom: $gutter-width * 2;
-      margin-top: $gutter-width * 2;
-      @include text-spec(40px, 46px);
+      margin-bottom: 14px;;
+      margin-top: 27px;
+      @include text-spec(26px, 33px);
       max-width: 1054px;
     }
     h2 {
-      @include text-spec(28px, 40px);
+      @include text-spec(22px, 24px);
       font-family: $font-family-italic;
       font-weight: 600;
-      position: relative;
-      &:before {
-        content: url(/assets/images/leaves.png);
-        display: block;
-        width: 178px;
-        height: 141px;
-        position: absolute;
-        bottom: -31px;
-        left: 44px;
-      }
-      &:after{
-        content: url(/assets/images/leaves2.png);
-        display: block;
-        width: 178px;
-        height: 141px;
-        position: absolute;
-        bottom: -31px;
-        right: 60px;
-      }
+    }
+  }
+  @include breakpoint(max-width $breakpoint-3-column - 1) {
+    padding-top: 30px;
+  }
+  @include breakpoint($breakpoint-2-column) {
+    h1{
+      @include text-spec(36px, 44px);
+    }
+    h2{
+      @include text-spec(26px, 33px);
     }
   }
   @include breakpoint($breakpoint-3-column) {
-    &:after {
-      height: 38px;
-    }
     header {
       padding-bottom: 56px;
       &:after {
         height: 38px;
+        bottom: -39px;
+      }
+      h1{
+        @include text-spec(40px, 46px);
+        margin-bottom: $gutter-width * 2;
+        margin-top: $gutter-width * 2;
+      }
+      h2{
+        @include text-spec(28px, 40px);
       }
     }
   }
