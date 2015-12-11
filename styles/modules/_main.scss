@@ -1,14 +1,14 @@
 .main {
-  padding: $gutter-width * 2 $gutter-width;
+  padding: $gutter-width * 4 $gutter-width;
   position: relative;
 
   &:after {
     content: "";
     display: block;
     width: 1px;
-    height: 40px;
+    height: 18px;
     position: absolute;
-    top: 0;
+    top: 13px;
     left: 50%;
     background-color: #000;
   }
@@ -21,9 +21,55 @@
     @include text-spec(25px, 32px);
     margin-bottom: 5px;
   }
-
+  .conclusion{
+    margin-top: 400px;
+    border-bottom: 1px solid #000;
+    padding-bottom: 85px;
+    h2{
+      @include text-spec(26px, 33px);
+      text-align: center;
+      margin-bottom: 45px;
+      .redText{
+        color: #ff0000;
+      }
+    }
+    p{
+      @include text-spec(22px, 24px);
+      text-align: center;
+    }  
+  }
+  .bestMessage{
+    margin-top: 100px;
+    margin-bottom: 280px;
+    p{
+      @include text-spec(22px, 24px);
+      font-family: $font-family-italic;
+      font-weight: 600;
+      text-align: center;
+    }
+  }
   @include breakpoint($breakpoint-4-column + $gutter-width * 2) {
     padding-left: 0;
     padding-right: 0;
+  }
+  @include breakpoint($breakpoint-3-column) {
+    &:after {
+      height: 40px;
+      top: 41px;
+    }
+    .bestMessage{
+      p{
+        @include text-spec(28px, 40px);
+      }
+    }
+    .conclusion{
+      h2{
+        @include text-spec(40px, 46px);
+        margin-bottom: 45px;
+      }
+      p{
+        @include text-spec(40px, 46px);
+      }  
+    }
   }
 }

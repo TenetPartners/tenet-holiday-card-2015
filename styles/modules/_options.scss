@@ -1,11 +1,11 @@
 .options {
-  margin-top: 10px;
+  margin-top: 16px;
 }
 .option {
   cursor: pointer;
   list-style-type: none;
   @include text-spec(18px, 22px);
-  margin-bottom: 10px;
+  margin-bottom: 18px;
   position: relative;
   &.result {
     cursor: default;
@@ -23,7 +23,7 @@
 .meter {
   height: 7px;
   position: relative;
-  background-color: black;
+  background-color: #fff;
 
   span {
     display: block;
