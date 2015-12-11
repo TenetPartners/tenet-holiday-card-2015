@@ -1,4 +1,5 @@
 import React from 'react'
+import ReactDOM from 'react-dom'
 import update from 'react-addons-update'
 // import expect, { createSpy, spyOn, isSpy } from 'expect'
 import expect from 'expect'
@@ -109,7 +110,7 @@ describe('AnonymousSurveyApp', () => {
       // );
       // expect(this.result).toEqualJSX(expectedResult);
 
-      let rootElement = React.findDOMNode(this.result);
+      let rootElement = ReactDOM.findDOMNode(this.result);
       expect(rootElement.tagName).toEqual('DIV');
       expect(rootElement.classList.length).toEqual(1);
       expect(rootElement.classList[0]).toEqual('survey');

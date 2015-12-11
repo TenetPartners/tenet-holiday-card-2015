@@ -137,7 +137,7 @@ describe('QuestionOption', () => {
     });
 
     it('surveyClosed prop should be false by default', function() {
-      var res = renderIntoDocument(<QuestionOption option={{}} selectOption={() => {}} questionId={"q1"} answers={{}} totalQuestionResponseCount={0} />);
+      var res = renderIntoDocument(<QuestionOption rank={0} option={{id: 'opt1', title: '', image: { defaultUrl: '', title: '' }}} selectOption={() => {}} questionId={"q1"} answers={{}} totalQuestionResponseCount={0} />);
       expect(res.props.surveyClosed).toEqual(false);
     });
   });

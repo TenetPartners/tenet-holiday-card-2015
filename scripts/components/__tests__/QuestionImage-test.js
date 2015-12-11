@@ -90,7 +90,7 @@ describe('QuestionImage', () => {
     });
 
     it('showHover prop should be false by default', function() {
-      var res = renderIntoDocument(<QuestionImage question={{id: 'opt2', image: {
+      var res = renderIntoDocument(<QuestionImage questionId="q1" question={{id: 'opt2', options: [], image: {
         defaultUrl: '/assets/q1-opt2.svg',
         title: 'this is opt2 alt text'
       }}} answers={{}} />);

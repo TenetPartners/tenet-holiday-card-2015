@@ -159,7 +159,16 @@ describe('Question', () => {
 
   describe('state', () => {
     beforeEach(function() {
-      this.result = renderIntoDocument(<Question index={"q1"} question={{image: {defaultUrl: '/assets/q1.svg', hoverUrl: '/assets/q1-hover.gif', title: 'this is alt text'}, options: [{id: 'opt1', imageUrl: '', title: 'opt1'}, {id: 'opt2', imageUrl: '', title: 'opt2'}, {id: 'opt3', imageUrl: '', title: 'opt3'}], question: 'What day is it?'}} selectOption={() => {}} answers={{}} />);
+      this.result = renderIntoDocument(<Question index={"q1"} question={{image: {defaultUrl: '/assets/q1.svg', hoverUrl: '/assets/q1-hover.gif', title: 'this is alt text'}, options: [{id: 'opt1', image: {
+        defaultUrl: '/assets/q1-opt1.svg',
+        title: 'this is opt1 alt text'
+      }, title: 'opt1'}, {id: 'opt2', image: {
+        defaultUrl: '/assets/q1-opt1.svg',
+        title: 'this is opt1 alt text'
+      }, title: 'opt2'}, {id: 'opt3', image: {
+        defaultUrl: '/assets/q1-opt1.svg',
+        title: 'this is opt1 alt text'
+      }, title: 'opt3'}], question: 'What day is it?'}} selectOption={() => {}} answers={{}} />);
     });
 
     it('surveyClosed prop should be false by default', function() {
