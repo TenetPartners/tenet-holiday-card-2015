@@ -16,6 +16,10 @@
 
 .totalResponses {
   position: relative;
+  @include text-spec(18px, 22px, #666);
+  display: inline-block;
+  margin-top: 10px;
+  margin-left: 40px;
 }
 .responseCount {
   display: inline-block;
