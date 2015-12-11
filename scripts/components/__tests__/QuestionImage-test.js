@@ -30,8 +30,6 @@ describe('QuestionImage', () => {
       expect(result).toEqualJSX(expectedResult);
     });
 
-    it('should preload the hover image on first page load');
-
     it('should show hover image if showHover enabled', function() {
       let result = loadQuestionImage('q1', {}, true);
       let expectedResult = (
@@ -41,6 +39,7 @@ describe('QuestionImage', () => {
       );
       expect(result).toEqualJSX(expectedResult);
     });
+
     it('should show selected option image upon answer', function() {
       let result = loadQuestionImage('q1', {q1: 'opt2'});
       let expectedResult = (
@@ -50,7 +49,16 @@ describe('QuestionImage', () => {
       );
       expect(result).toEqualJSX(expectedResult);
     });
-    it('should show selected option image upon answer even on hover');
+
+    it('should show selected option image upon answer even on hover', function() {
+      let result = loadQuestionImage('q1', {q1: 'opt2'}, true);
+      let expectedResult = (
+        <div className="questionImage">
+          <img src="/assets/q1-opt2.svg" alt="this is opt2 alt text"/>
+        </div>
+      );
+      expect(result).toEqualJSX(expectedResult);
+    });
   });
 
   describe('props', () => {

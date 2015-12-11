@@ -155,8 +155,6 @@ describe('Question', () => {
       );
       expect(result).toEqualJSX(expectedResult);
     });
-
-    it('should pass swap image on hover');
   });
 
   describe('state', () => {
