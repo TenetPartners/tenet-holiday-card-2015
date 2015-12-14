@@ -2,10 +2,19 @@ module.exports = (gulp, plugins, utilities) => {
     return () => {
         let publisher = plugins.awspublish.create({
             params: {
-                Bucket: utilities.deployTarget[utilities.args.target]
+                Bucket: utilities.deploySettings.deployTarget[utilities.args.target]
             }
         });
         return gulp.src([`${utilities.paths.BUILD_FOLDER}/**/*`])
+            .pipe(plugins.awspublishRouter({
+                cache: {
+                    cacheTime: 300,
+                    public: false
+                },
+                routes: {
+                    "^.+$": "$&"
+                }
+            }))
             .pipe(plugins.awspublish.gzip())
             .pipe(publisher.publish())
             .pipe(publisher.sync())

@@ -2,7 +2,8 @@ import gulp from 'gulp';
 import babel from 'babel-core/register'
 
 let plugins = require('gulp-load-plugins')({ pattern: '*', rename: {
-    'vinyl-buffer': 'buffer'
+    'vinyl-buffer': 'buffer',
+    'gulp-awspublish-router' : 'awspublishRouter'
 }});
 plugins.utilities = require('./gulp-utilities');
 plugins.source = require('vinyl-source-stream');

@@ -1,9 +1,22 @@
 module.exports = {
     args: require('yargs').argv,
     exitAfterTest: true,
-    deployTarget: { // these should be aws s3 bucket names, called via gulp deploy --target={key}
-        dev: "holiday2015.tenetpartners.com",
-        prod: ""
+    deploySettings: {
+        deployTarget: { // these should be aws s3 bucket names, called via gulp deploy --target={key}
+            dev: "holiday2015.tenetpartners.com",
+            prod: ""
+        },
+        cacheSettings : {
+            cache: {
+                // cache for 5 minutes by default
+                cacheTime: 300
+            },
+            routes: {
+                "^assets/.+$": {
+                    cacheTime: 630720000
+                }
+            }
+        }
     },
     paths: {
         JS_SRC: './scripts/**/*.js',
