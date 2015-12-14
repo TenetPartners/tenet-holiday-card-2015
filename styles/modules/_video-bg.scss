@@ -10,5 +10,9 @@ video#bgvid {
     -webkit-transform: translateX(-50%) translateY(-50%);
     transform: translateX(-50%) translateY(-50%);
     background: url(polina.jpg) no-repeat;
-    background-size: cover; 
+    background-size: cover;
+    display: none;
+    @include breakpoint($breakpoint-3-column) {
+        display: block;
+    } 
 }

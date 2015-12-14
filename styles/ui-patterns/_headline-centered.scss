@@ -40,9 +40,6 @@
       font-weight: 600;
     }
   }
-  @include breakpoint(max-width $breakpoint-3-column - 1) {
-    padding-top: 30px;
-  }
   @include breakpoint($breakpoint-2-column) {
     header{
       text-align: center;
@@ -53,6 +50,9 @@
         @include text-spec(26px, 33px);
       }
     }
+  }
+  @include breakpoint(max-width $breakpoint-3-column - 1) {
+    padding-top: 30px;
   }
   @include breakpoint($breakpoint-3-column) {
     header {
