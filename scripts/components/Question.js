@@ -58,7 +58,7 @@ class Question extends React.Component {
 
     return (
       <li className="question" ref="question" onMouseOver={this.mouseOver.bind(this)} onMouseOut={this.mouseOut.bind(this)}>
-        <QuestionImage question={question} questionId={this.props.index} answers={this.props.answers} showHover={this.state.hover}/>
+        <QuestionImage question={question} questionId={this.props.index} answers={this.props.answers} showHover={this.state.hover} manifest={this.props.manifest}/>
         <h2>{question.question}</h2>
         <ul className="options">
           {Object.keys(question.options).map((opt) =>
@@ -92,6 +92,7 @@ Question.propTypes = {
   index: React.PropTypes.string.isRequired,
   selectOption: React.PropTypes.func.isRequired,
   answers: React.PropTypes.object.isRequired,
+  manifest: React.PropTypes.object,
   surveyClosed: React.PropTypes.bool
 }
 

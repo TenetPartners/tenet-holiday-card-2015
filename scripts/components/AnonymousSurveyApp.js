@@ -9,6 +9,7 @@ import Question from './Question'
 // import questions from '../questions'
 import config from '../config'
 import Firebase from 'firebase'
+import request from 'superagent'
 
 // const base = Rebase.createClass(config.firebaseUrl);
 // const fbRef = new Firebase(config.firebaseUrl);
@@ -20,7 +21,8 @@ class AnonymousSurveyApp extends React.Component {
     this.state = {
       surveyClosed: false,
       questions: {},
-      answers: {}
+      answers: {},
+      manifest: {}
     };
 
     this.base = Rebase.createClass(config.firebaseUrl);
@@ -38,6 +40,7 @@ class AnonymousSurveyApp extends React.Component {
   }
 
   componentDidMount() {
+    this.loadManifest();
     this.bindWithFirebase();
 
     var answers = localStorage.getItem('answers');
@@ -67,6 +70,19 @@ class AnonymousSurveyApp extends React.Component {
     this.rebaseRef = this.base.bindToState('questions', {
       context: this,
       state: 'questions'
+    });
+  }
+
+  loadManifest() {
+    let app = this;
+    request.get('/rev-manifest.json').end(function(err, result) {
+      if (result && result.statusCode === 200) {
+        app.setState({
+          manifest: JSON.parse(result.text)
+        });
+        // console.log(result.text);
+      }
+      // console.log(result);
     });
   }
 
@@ -113,7 +129,7 @@ class AnonymousSurveyApp extends React.Component {
   }
 
   renderQuestion(key) {
-    return <Question key={key} index={key} question={this.state.questions[key]} selectOption={this.selectOption.bind(this)} answers={this.state.answers} surveyClosed={this.state.surveyClosed} />
+    return <Question key={key} index={key} question={this.state.questions[key]} selectOption={this.selectOption.bind(this)} answers={this.state.answers} surveyClosed={this.state.surveyClosed} manifest={this.state.manifest} />
   }
 
   preloadQuestionHoverImages(hoverImages) {

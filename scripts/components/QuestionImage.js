@@ -7,6 +7,15 @@ import React from 'react'
 
 class QuestionImage extends React.Component {
 
+  getImageUrlFromManifest(imageUrl) {
+    let manifest = this.props.manifest;
+    while (imageUrl.charAt(0) === '/') {
+      imageUrl = imageUrl.substr(1);
+    }
+    let newUrl = (manifest && manifest[imageUrl]) ? manifest[imageUrl] : imageUrl;
+    return '/' + newUrl;
+  }
+
   renderImage() {
     let question = this.props.question;
     let selectedAnswer = this.props.answers[this.props.questionId];
@@ -16,11 +25,11 @@ class QuestionImage extends React.Component {
       if (optIndex > -1) {
         let optionImage = question.options[optIndex].image;
         if (optionImage) {
-          return <img src={optionImage.defaultUrl} alt={optionImage.title}/>
+          return <img src={this.getImageUrlFromManifest(optionImage.defaultUrl)} alt={optionImage.title}/>
         }
       }
     }
-    return <img src={this.props.showHover ? question.image.hoverUrl : question.image.defaultUrl} alt={question.image.title}/>
+    return <img src={this.props.showHover ? this.getImageUrlFromManifest(question.image.hoverUrl) : this.getImageUrlFromManifest(question.image.defaultUrl)} alt={question.image.title}/>
   }
 
   render() {
@@ -43,7 +52,8 @@ QuestionImage.propTypes = {
   }).isRequired,
   questionId: React.PropTypes.string.isRequired,
   answers: React.PropTypes.object.isRequired,
-  showHover: React.PropTypes.bool
+  showHover: React.PropTypes.bool,
+  manifest: React.PropTypes.object
 }
 
 QuestionImage.defaultProps = {

@@ -17,7 +17,7 @@ describe('Question', () => {
   function loadQuestion(questionId, answers, surveyClosed = false) {
     let question = questions.getSurveyQuestions()[questionId];
     let renderer = createRenderer();
-    renderer.render(<Question index={questionId} question={question} selectOption={() => {}} answers={answers} surveyClosed={surveyClosed} />);
+    renderer.render(<Question index={questionId} question={question} selectOption={() => {}} answers={answers} surveyClosed={surveyClosed} manifest={{}} />);
     return renderer.getRenderOutput();
   }
 
@@ -26,7 +26,7 @@ describe('Question', () => {
       let result = loadQuestion('q1', {});
       let expectedResult = (
         <li className="question" ref="question" onMouseOver={() => {}} onMouseOut={() => {}}>
-          <QuestionImage question={{image: {defaultUrl: '/assets/q1.svg', hoverUrl: '/assets/q1-hover.gif', title: 'this is alt text'}, options: [{id: 'opt1', image: {defaultUrl: '/assets/q1-opt1.svg', title: 'this is opt1 alt text'}, title: 'opt1'}, {id: 'opt2', image: {defaultUrl: '/assets/q1-opt2.svg', title: 'this is opt2 alt text'}, responseCount: 8, title: 'opt2'}, {id: 'opt3', image: {defaultUrl: '/assets/q1-opt3.svg', title: 'this is opt3 alt text'}, responseCount: 4, title: 'opt3'}], question: 'What day is it?'}} questionId="q1" answers={{}}/>
+          <QuestionImage manifest={{}} question={{image: {defaultUrl: '/assets/q1.svg', hoverUrl: '/assets/q1-hover.gif', title: 'this is alt text'}, options: [{id: 'opt1', image: {defaultUrl: '/assets/q1-opt1.svg', title: 'this is opt1 alt text'}, title: 'opt1'}, {id: 'opt2', image: {defaultUrl: '/assets/q1-opt2.svg', title: 'this is opt2 alt text'}, responseCount: 8, title: 'opt2'}, {id: 'opt3', image: {defaultUrl: '/assets/q1-opt3.svg', title: 'this is opt3 alt text'}, responseCount: 4, title: 'opt3'}], question: 'What day is it?'}} questionId="q1" answers={{}}/>
           <h2>What day is it?</h2>
           <ul className="options">
             <QuestionOption answers={{}} questionId="q1" selectOption={() => {}} option={{id: 'opt1', image: {
@@ -51,7 +51,7 @@ describe('Question', () => {
       let result = loadQuestion('q2', {});
       let expectedResult = (
         <li className="question" ref="question" onMouseOver={() => {}} onMouseOut={() => {}}>
-          <QuestionImage question={{image: {defaultUrl: '/assets/q2.svg', hoverUrl: '/assets/q2-hover.gif', title: 'this is alt text 2'}, options: [{id: 'opt1', image: {defaultUrl: '/assets/q2-opt1.svg', title: 'this is q2 opt1 alt text'}, title: 'opt1'}, {id: 'opt2', image: {defaultUrl: '/assets/q2-opt2.svg', title: 'this is q2 opt2 alt text'}, title: 'opt2'}], question: 'What time is it?'}} questionId="q2" answers={{}}/>
+          <QuestionImage manifest={{}}  question={{image: {defaultUrl: '/assets/q2.svg', hoverUrl: '/assets/q2-hover.gif', title: 'this is alt text 2'}, options: [{id: 'opt1', image: {defaultUrl: '/assets/q2-opt1.svg', title: 'this is q2 opt1 alt text'}, title: 'opt1'}, {id: 'opt2', image: {defaultUrl: '/assets/q2-opt2.svg', title: 'this is q2 opt2 alt text'}, title: 'opt2'}], question: 'What time is it?'}} questionId="q2" answers={{}}/>
           <h2>What time is it?</h2>
           <ul className="options">
             <QuestionOption answers={{}} questionId="q2" selectOption={() => {}} option={{id: 'opt1', image: {
@@ -72,7 +72,7 @@ describe('Question', () => {
       let result = loadQuestion('q1', { q1: 'opt1' });
       let expectedResult = (
         <li className="question" ref="question" onMouseOver={() => {}} onMouseOut={() => {}}>
-          <QuestionImage question={{image: {defaultUrl: '/assets/q1.svg', hoverUrl: '/assets/q1-hover.gif', title: 'this is alt text'}, options: [{id: 'opt1', image: {defaultUrl: '/assets/q1-opt1.svg', title: 'this is opt1 alt text'}, title: 'opt1'}, {id: 'opt2', image: {defaultUrl: '/assets/q1-opt2.svg', title: 'this is opt2 alt text'}, responseCount: 8, title: 'opt2'}, {id: 'opt3', image: {defaultUrl: '/assets/q1-opt3.svg', title: 'this is opt3 alt text'}, responseCount: 4, title: 'opt3'}], question: 'What day is it?'}} questionId="q1" answers={{ q1: 'opt1' }}/>
+          <QuestionImage manifest={{}}  question={{image: {defaultUrl: '/assets/q1.svg', hoverUrl: '/assets/q1-hover.gif', title: 'this is alt text'}, options: [{id: 'opt1', image: {defaultUrl: '/assets/q1-opt1.svg', title: 'this is opt1 alt text'}, title: 'opt1'}, {id: 'opt2', image: {defaultUrl: '/assets/q1-opt2.svg', title: 'this is opt2 alt text'}, responseCount: 8, title: 'opt2'}, {id: 'opt3', image: {defaultUrl: '/assets/q1-opt3.svg', title: 'this is opt3 alt text'}, responseCount: 4, title: 'opt3'}], question: 'What day is it?'}} questionId="q1" answers={{ q1: 'opt1' }}/>
           <h2>What day is it?</h2>
           <ul className="options">
             <QuestionOption answers={{ q1: 'opt1' }} questionId="q1" selectOption={() => {}} option={{id: 'opt1', image: {
@@ -116,7 +116,7 @@ describe('Question', () => {
       let result = loadQuestion('q1', {}, true);
       let expectedResult = (
         <li className="question" ref="question" onMouseOver={() => {}} onMouseOut={() => {}}>
-          <QuestionImage question={{image: {defaultUrl: '/assets/q1.svg', hoverUrl: '/assets/q1-hover.gif', title: 'this is alt text'}, options: [{id: 'opt1', image: {defaultUrl: '/assets/q1-opt1.svg', title: 'this is opt1 alt text'}, title: 'opt1'}, {id: 'opt2', image: {defaultUrl: '/assets/q1-opt2.svg', title: 'this is opt2 alt text'}, responseCount: 8, title: 'opt2'}, {id: 'opt3', image: {defaultUrl: '/assets/q1-opt3.svg', title: 'this is opt3 alt text'}, responseCount: 4, title: 'opt3'}], question: 'What day is it?'}} questionId="q1" answers={{}}/>
+          <QuestionImage manifest={{}}  question={{image: {defaultUrl: '/assets/q1.svg', hoverUrl: '/assets/q1-hover.gif', title: 'this is alt text'}, options: [{id: 'opt1', image: {defaultUrl: '/assets/q1-opt1.svg', title: 'this is opt1 alt text'}, title: 'opt1'}, {id: 'opt2', image: {defaultUrl: '/assets/q1-opt2.svg', title: 'this is opt2 alt text'}, responseCount: 8, title: 'opt2'}, {id: 'opt3', image: {defaultUrl: '/assets/q1-opt3.svg', title: 'this is opt3 alt text'}, responseCount: 4, title: 'opt3'}], question: 'What day is it?'}} questionId="q1" answers={{}}/>
           <h2>What day is it?</h2>
           <ul className="options">
             <QuestionOption answers={{}} questionId="q1" selectOption={() => {}} option={{id: 'opt1', image: {
@@ -222,6 +222,11 @@ describe('Question', () => {
     it('has answers propType that is a required object', function() {
       expect(Question.propTypes.answers).toExist();
       expect(Question.propTypes.answers).toBe(React.PropTypes.object.isRequired);
+    });
+
+    it('has manifest propType that is an optional object', function() {
+      expect(Question.propTypes.manifest).toExist();
+      expect(Question.propTypes.manifest).toBe(React.PropTypes.object);
     });
 
     it('has surveyClosed propType that is an optional bool', function() {

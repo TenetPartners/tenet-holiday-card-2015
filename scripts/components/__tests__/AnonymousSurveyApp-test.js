@@ -81,7 +81,6 @@ sinon.stub(AnonymousSurveyApp.prototype, 'updateResponseCount', function(questio
   });
 });
 
-
 describe('AnonymousSurveyApp', () => {
 
   describe('structure', () => {
@@ -91,11 +90,13 @@ describe('AnonymousSurveyApp', () => {
       // this.result = renderer.getRenderOutput();
       localStorage.setItem('answers', '');
       // this.spy = expect.spyOn(AnonymousSurveyApp.prototype, 'preloadQuestionHoverImages');
-      this.spy = sinon.spy(AnonymousSurveyApp.prototype, 'preloadQuestionHoverImages');
+      this.preloadSpy = sinon.spy(AnonymousSurveyApp.prototype, 'preloadQuestionHoverImages');
+      this.manifestSpy = sinon.spy(AnonymousSurveyApp.prototype, 'loadManifest');
       this.result = renderIntoDocument(<AnonymousSurveyApp />);
     });
     afterEach(function() {
       AnonymousSurveyApp.prototype.preloadQuestionHoverImages.restore();
+      AnonymousSurveyApp.prototype.loadManifest.restore();
     });
 
     it('works', function() {
@@ -121,7 +122,11 @@ describe('AnonymousSurveyApp', () => {
 
     it('should preload question hover images', function() {
       // the spy gets called twice, one with a blank array and one with the correct arguments (because of the setState in the bindWithFirebase stub above, so it needs to render again)
-      expect(this.spy.getCall(1).args[0]).toEqual(['/assets/q1-hover.gif', '/assets/q2-hover.gif']);
+      expect(this.preloadSpy.getCall(1).args[0]).toEqual(['/assets/q1-hover.gif', '/assets/q2-hover.gif']);
+    });
+
+    it('should load the manifest file', function() {
+      expect(this.manifestSpy.calledOnce).toEqual(true);
     });
   });
 
@@ -164,6 +169,10 @@ describe('AnonymousSurveyApp', () => {
     it('answers should be empty on first load', function() {
       expect(this.result.state.answers).toEqual({});
     });
+
+    it('stores the static asset manifest', function() {
+      expect(this.result.state.manifest).toBeA('object');
+    })
 
     it('should load answers from localStorage', function() {
       let answers = { q1: 'opt1' };

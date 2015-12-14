@@ -12,10 +12,10 @@ import questions from '../../questions'
 
 describe('QuestionImage', () => {
 
-  function loadQuestionImage(questionId, answers, showHover = false) {
+  function loadQuestionImage(questionId, answers, manifest, showHover = false) {
     let question = questions.getSurveyQuestions()[questionId];
     let renderer = createRenderer();
-    renderer.render(<QuestionImage question={question} questionId={questionId} answers={answers} showHover={showHover} />);
+    renderer.render(<QuestionImage question={question} questionId={questionId} answers={answers} showHover={showHover} manifest={manifest} />);
     return renderer.getRenderOutput();
   }
 
@@ -31,7 +31,7 @@ describe('QuestionImage', () => {
     });
 
     it('should show hover image if showHover enabled', function() {
-      let result = loadQuestionImage('q1', {}, true);
+      let result = loadQuestionImage('q1', {}, {}, true);
       let expectedResult = (
         <div className="questionImage">
           <img src="/assets/q1-hover.gif" alt="this is alt text"/>
@@ -51,10 +51,20 @@ describe('QuestionImage', () => {
     });
 
     it('should show selected option image upon answer even on hover', function() {
-      let result = loadQuestionImage('q1', {q1: 'opt2'}, true);
+      let result = loadQuestionImage('q1', {q1: 'opt2'}, {}, true);
       let expectedResult = (
         <div className="questionImage">
           <img src="/assets/q1-opt2.svg" alt="this is opt2 alt text"/>
+        </div>
+      );
+      expect(result).toEqualJSX(expectedResult);
+    });
+
+    it('should display image in manifest if it exists', function() {
+      let result = loadQuestionImage('q1', {}, {"assets/q1.svg": "assets/q1-d4a8066b91.svg", "assets/q2.svg": "assets/q2-1510aa15dc.svg"});
+      let expectedResult = (
+        <div className="questionImage">
+          <img src="/assets/q1-d4a8066b91.svg" alt="this is alt text"/>
         </div>
       );
       expect(result).toEqualJSX(expectedResult);
@@ -95,6 +105,11 @@ describe('QuestionImage', () => {
         title: 'this is opt2 alt text'
       }}} answers={{}} />);
       expect(res.props.showHover).toEqual(false);
+    });
+
+    it('has manifest propType that is an optional object', function() {
+      expect(QuestionImage.propTypes.manifest).toExist();
+      expect(QuestionImage.propTypes.manifest).toBe(React.PropTypes.object);
     });
   });
 });
