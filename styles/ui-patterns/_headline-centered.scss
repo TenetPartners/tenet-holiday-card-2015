@@ -3,7 +3,6 @@
   //   display: none;
   // }
   header {
-    text-align: center;
     padding-bottom: 30px;
     margin-bottom: 40px;
     h1, h2 {
@@ -45,11 +44,14 @@
     padding-top: 30px;
   }
   @include breakpoint($breakpoint-2-column) {
-    h1{
-      @include text-spec(36px, 44px);
-    }
-    h2{
-      @include text-spec(26px, 33px);
+    header{
+      text-align: center;
+      h1{
+        @include text-spec(36px, 44px);
+      }
+      h2{
+        @include text-spec(26px, 33px);
+      }
     }
   }
   @include breakpoint($breakpoint-3-column) {
