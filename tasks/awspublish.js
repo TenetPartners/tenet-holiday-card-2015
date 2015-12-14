@@ -7,15 +7,25 @@ module.exports = (gulp, plugins, utilities) => {
         });
         return gulp.src([`${utilities.paths.BUILD_FOLDER}/**/*`])
             .pipe(plugins.awspublishRouter({
-                cache: {
-                    cacheTime: 300,
-                    public: false
-                },
+
                 routes: {
-                    "^.+$": "$&"
+                    "^.+\\.(?:js|css|svg|ttf|json)$": {
+                        gzip: true,
+                        useExpires: true,
+                        cacheTime: 630720000,
+                        public: false
+                    },
+                    "^.+\\.html": {
+                        gzip: true
+                    },
+                    "^.+\\.mp4": {
+                        useExpires: true,
+                        cacheTime: 630720000,
+                        public: false
+                    },
+                    "^.+$" : {}
                 }
             }))
-            .pipe(plugins.awspublish.gzip())
             .pipe(publisher.publish())
             .pipe(publisher.sync())
             .pipe(publisher.cache())
