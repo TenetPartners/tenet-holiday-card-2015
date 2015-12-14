@@ -22,6 +22,7 @@ gulp.task('browser-sync', getTask('browser-sync'));
 gulp.task('scripts', getTask('scripts'));
 gulp.task('coverage:instrument', getTask('coverage:instrument'));
 gulp.task('coverage:report', getTask('coverage:report'));
+gulp.task('coverage:coveralls', getTask('coverage:coveralls'));
 gulp.task('responsive-images', getTask('responsive-images'));
 gulp.task('clean', getTask('clean'));
 gulp.task('test:coverage', getTask('test:coverage'));

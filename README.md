@@ -1,4 +1,5 @@
 [![devDependency Status](https://david-dm.org/TenetPartners/react-seed/dev-status.svg)](https://david-dm.org/TenetPartners/react-seed#info=devDependencies)
+[![Build Status](https://travis-ci.org/TenetPartners/tenet-holiday-card-2015.svg?branch=master)](https://travis-ci.org/TenetPartners/tenet-holiday-card-2015)
 
 # Tenet Partners Holiday Card 2015
 

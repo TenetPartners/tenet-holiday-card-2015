@@ -13,7 +13,8 @@ node_js:
 before_script:
   - npm install -g gulp
   # - cat /home/travis/build/TenetPartners/tenet-holiday-card-2015/npm-debug.log
-script: gulp test
+script: gulp test:coverage
+after_success: gulp coverage:coveralls
 env:
   - CXX=g++-4.8
 addons:
