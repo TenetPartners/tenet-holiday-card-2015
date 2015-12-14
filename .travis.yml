@@ -1,4 +1,10 @@
-sudo: false
+sudo: required
+before_install:
+    - echo "Installing libvips..."
+    - sudo add-apt-repository -y ppa:lovell/precise-backport-vips
+    - sudo apt-get update
+    - sudo apt-get install -y libvips-dev
+    - echo "Completed libvips installation."
 language: node_js
 node_js:
   - "stable"
@@ -6,6 +12,7 @@ node_js:
   - "5.0"
 before_script:
   - npm install -g gulp
+  # - cat /home/travis/build/TenetPartners/tenet-holiday-card-2015/npm-debug.log
 script: gulp test
 env:
   - CXX=g++-4.8
@@ -13,7 +20,7 @@ addons:
   apt:
     sources:
       - ubuntu-toolchain-r-test
+      # - trusty-backport-vips https://github.com/travis-ci/apt-source-whitelist/pull/137 https://github.com/lovell/sharp/issues/187#issuecomment-121789796
     packages:
-      - libvips-tools
+      # - libvips-dev
       - g++-4.8
-before_script: cat /home/travis/build/TenetPartners/tenet-holiday-card-2015/npm-debug.log
