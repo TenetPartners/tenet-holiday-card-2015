@@ -17,7 +17,7 @@ describe('QuestionOption', () => {
     let option = question.options[optIndex];
     option.responseCount = optionResponseCount;
     let renderer = createRenderer();
-    renderer.render(<QuestionOption option={option} selectOption={() => {}} questionId={questionId} answers={answers} totalQuestionResponseCount={totalQuestionResponseCount} surveyClosed={surveyClosed} />);
+    renderer.render(<QuestionOption option={option} selectOption={() => {}} questionId={questionId} answers={answers} totalQuestionResponseCount={totalQuestionResponseCount} surveyClosed={surveyClosed} rank={0} />);
     return renderer.getRenderOutput();
   }
 
@@ -26,7 +26,7 @@ describe('QuestionOption', () => {
     it('should show chart if survey is closed', function() {
       let result = loadQuestionOption('q1', 1, 8, {}, 12, true);
       let expectedResult = (
-        <li className="option result">
+        <li className="option result" data-rank={0}>
           <span>opt2</span>
           <span className="percentSelected">67%</span>
           <div className="meter"><span style={{width: '67%'}}></span></div>
@@ -38,7 +38,7 @@ describe('QuestionOption', () => {
     it('should show chart if question has been answered', function() {
       let result = loadQuestionOption('q1', 1, 8, {q1: 'opt1'}, 12);
       let expectedResult = (
-        <li className="option result">
+        <li className="option result" data-rank={0}>
           <span>opt2</span>
           <span className="percentSelected">67%</span>
           <div className="meter"><span style={{width: '67%'}}></span></div>
@@ -50,7 +50,7 @@ describe('QuestionOption', () => {
     it('should show 100% if question has been answered and only one total response', function() {
       let result = loadQuestionOption('q1', 1, 1, {q1: 'opt1'}, 1);
       let expectedResult = (
-        <li className="option result">
+        <li className="option result" data-rank={0}>
           <span>opt2</span>
           <span className="percentSelected">100%</span>
           <div className="meter"><span style={{width: '100%'}}></span></div>
@@ -62,7 +62,7 @@ describe('QuestionOption', () => {
     it('should show 0% if question has been answered and only one total response', function() {
       let result = loadQuestionOption('q1', 1, 0, {q1: 'opt1'}, 1);
       let expectedResult = (
-        <li className="option result">
+        <li className="option result" data-rank={0}>
           <span>opt2</span>
           <span className="percentSelected">0%</span>
           <div className="meter"><span style={{width: '0%'}}></span></div>
@@ -74,7 +74,7 @@ describe('QuestionOption', () => {
     it('should denote that the option has been selected', function() {
       let result = loadQuestionOption('q1', 0, 1, {q1: 'opt1'}, 1);
       let expectedResult = (
-        <li className="option result">
+        <li className="option result" data-rank={0}>
           <span className="selectedAnswer" title="You selected this option"></span>
           <span>opt1</span>
           <span className="percentSelected">100%</span>
@@ -121,6 +121,11 @@ describe('QuestionOption', () => {
       expect(QuestionOption.propTypes.totalQuestionResponseCount).toBe(React.PropTypes.number.isRequired);
     });
 
+    it('has rank propType that is a required number', function() {
+      expect(QuestionOption.propTypes.rank).toExist();
+      expect(QuestionOption.propTypes.rank).toBe(React.PropTypes.number.isRequired);
+    });
+
     it('has answers propType that is a required object', function() {
       expect(QuestionOption.propTypes.answers).toExist();
       expect(QuestionOption.propTypes.answers).toBe(React.PropTypes.object.isRequired);
@@ -132,7 +137,7 @@ describe('QuestionOption', () => {
     });
 
     it('surveyClosed prop should be false by default', function() {
-      var res = renderIntoDocument(<QuestionOption option={{}} selectOption={() => {}} questionId={"q1"} answers={{}} totalQuestionResponseCount={0} />);
+      var res = renderIntoDocument(<QuestionOption rank={0} option={{id: 'opt1', title: '', image: { defaultUrl: '', title: '' }}} selectOption={() => {}} questionId={"q1"} answers={{}} totalQuestionResponseCount={0} />);
       expect(res.props.surveyClosed).toEqual(false);
     });
   });

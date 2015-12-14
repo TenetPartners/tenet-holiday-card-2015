@@ -11,7 +11,7 @@ class QuestionOption extends React.Component {
     var percentSelected = this.props.totalQuestionResponseCount > 0 ? ((option.responseCount || 0) / this.props.totalQuestionResponseCount * 100).toFixed(0) : 0;
     var selectedAnswer = this.props.answers[this.props.questionId] === option.id;
     return (
-      <li className="option result">
+      <li className="option result" data-rank={this.props.rank}>
         {selectedAnswer ? <span className="selectedAnswer" title="You selected this option"></span> : null}
         <span>{option.title}</span>
         <span className="percentSelected">{percentSelected}%</span>
@@ -39,11 +39,15 @@ QuestionOption.propTypes = {
     id: React.PropTypes.string.isRequired,
     title: React.PropTypes.string.isRequired,
     responseCount: React.PropTypes.number,
-    imageUrl: React.PropTypes.string
+    image: React.PropTypes.shape({
+      defaultUrl: React.PropTypes.string.isRequired,
+      title: React.PropTypes.string.isRequired
+    }).isRequired
   }).isRequired,
   selectOption: React.PropTypes.func.isRequired,
   questionId: React.PropTypes.string.isRequired,
   totalQuestionResponseCount: React.PropTypes.number.isRequired,
+  rank: React.PropTypes.number.isRequired,
   answers: React.PropTypes.object.isRequired,
   surveyClosed: React.PropTypes.bool
 }

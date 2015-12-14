@@ -9,6 +9,7 @@ import Question from './Question'
 // import questions from '../questions'
 import config from '../config'
 import Firebase from 'firebase'
+import request from 'superagent'
 
 // const base = Rebase.createClass(config.firebaseUrl);
 // const fbRef = new Firebase(config.firebaseUrl);
@@ -20,7 +21,8 @@ class AnonymousSurveyApp extends React.Component {
     this.state = {
       surveyClosed: false,
       questions: {},
-      answers: {}
+      answers: {},
+      manifest: {}
     };
 
     this.base = Rebase.createClass(config.firebaseUrl);
@@ -38,6 +40,7 @@ class AnonymousSurveyApp extends React.Component {
   }
 
   componentDidMount() {
+    this.loadManifest();
     this.bindWithFirebase();
 
     var answers = localStorage.getItem('answers');
@@ -67,6 +70,19 @@ class AnonymousSurveyApp extends React.Component {
     this.rebaseRef = this.base.bindToState('questions', {
       context: this,
       state: 'questions'
+    });
+  }
+
+  loadManifest() {
+    let app = this;
+    request.get('/rev-manifest.json').end(function(err, result) {
+      if (result && result.statusCode === 200) {
+        app.setState({
+          manifest: JSON.parse(result.text)
+        });
+        // console.log(result.text);
+      }
+      // console.log(result);
     });
   }
 
@@ -113,12 +129,22 @@ class AnonymousSurveyApp extends React.Component {
   }
 
   renderQuestion(key) {
-    return <Question key={key} index={key} question={this.state.questions[key]} selectOption={this.selectOption.bind(this)} answers={this.state.answers} surveyClosed={this.state.surveyClosed} />
+    return <Question key={key} index={key} question={this.state.questions[key]} selectOption={this.selectOption.bind(this)} answers={this.state.answers} surveyClosed={this.state.surveyClosed} manifest={this.state.manifest} />
+  }
+
+  preloadQuestionHoverImages(hoverImages) {
+    for (var i = 0; i < hoverImages.length; i++) {
+      let img = document.createElement('img');
+      img.src = hoverImages[i];
+    }
   }
 
   render() {
     let introH1 = this.state.surveyClosed ? "Thank you for taking our holiday survey. Here's how everyone responded." : "Will brand innovation impact your 2015 holiday season or will you be sticking with tradition?";
     let introH2 = this.state.surveyClosed ? "" : "Please answer the questions below and check back later for the full results.";
+
+    let hoverImages = Object.keys(this.state.questions).map(questionId => this.state.questions[questionId].image.hoverUrl);
+    this.preloadQuestionHoverImages(hoverImages);
 
     return (
       <div className={this.getClassName()}>
@@ -130,8 +156,11 @@ class AnonymousSurveyApp extends React.Component {
           {Object.keys(this.state.questions).map(this.renderQuestion.bind(this))}
         </ul>
         <div className="conclusion">
-          <h2>And most importantly, how will you help brighten the holidays for those less fortunate?</h2>
-          <p>This season, Tenet Partners is making a donation to No Child Hungry on behalf of our clients and partners.</p>
+          <h2>And most importantly, how will <span className="redText">you</span> help brighten<br/> the holidays for those less fortunate?</h2>
+          <p>This season, Tenet Partners is making a donation<br/> to No Child Hungry on behalf of our clients and partners.</p>
+        </div>
+        <div className="bestMessage">
+          <p>We hope you have a joyous season with family and friends.<br/> All the best from Tenet Partners. </p>
         </div>
       </div>
     )
