@@ -16,6 +16,7 @@ before_script:
 script: gulp test:coverage
 after_success:
   - gulp coverage:coveralls
+  - chmod +x tasks/deploy.sh
 deploy:
   provider: script
   script: tasks/deploy.sh
