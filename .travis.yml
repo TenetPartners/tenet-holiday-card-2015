@@ -16,7 +16,7 @@ before_script:
 script: gulp test:coverage
 after_success:
   - gulp coverage:coveralls
-  - gulp deploy --target=dev
+  # - gulp deploy --target=dev
   # - chmod +x tasks/deploy.sh
 # deploy:
 #   provider: script
@@ -35,3 +35,7 @@ addons:
     packages:
       # - libvips-dev
       - g++-4.8
+notifications:
+  email: false
+  slack:
+    secure: GDYsR7N9tMQyd6588GBcaTEyfQxR+YRL6nAm7Pmx3ejQ5ea9hI7VzRECaNglF6Sl+bFnsGQ+tsGkYNgAbJnqQfe82y1lQAWOh+7s6HaBGauIiJd3FE9Lr/yYCrTHw+2XxgL83p1V+3EJTmGVvKgfy7bqwrQVDoYRYI4cqNQ7ZUzq3vjdiXZhJoRvbSIwUB2YtNnd+oqMI+w7zOmX33cpzDli8mVqOB4zHCpWgWvEeVgcYmjDH4LccZ2vjIEDIxbodAQtEaUB1EZMVu3OEGLRYLARLvGvtlH8uUdB0zt87TNqhU1Xzm8MjUM/90hUa/Cx+WBwl+fzPQnEz8pbaXopaxcDzfOCDQ+qmImyWIPd0QG9qyvBXaEkJ4l4r++JCpiJ+c8l9mP4m2ztNpsskjx5XhXOyt6MwqMzQ2ZXfyEs9EOAJSFcT4lC5I4xSn2gu111RjMGs8xIiEHxsp1c02JvhszzmWYKSLkBF2nbMZPjUXuE0Q8VosWehnMWlnQDx3leDHzEc3yZQWFvmDMyT+XjCODgJpe+ouwrIavMlWnFBhwm7sWghnQu2EuWKgz7LKbNOWF0iWWsriK9VrxP5yIWWBISKi5RivPDdKI1nRX8X0Rs2mYydLD2vuhBVfYGkkkiMd64ENffz21N0t8dPQ6s/EeW0KNiDc/FRRWHifF0LSE=
