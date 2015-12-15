@@ -7,6 +7,11 @@ import React from 'react'
 
 class QuestionImage extends React.Component {
 
+  constructor() {
+    super();
+    this.preloaded = [];
+  }
+
   getImageUrlFromManifest(imageUrl) {
     let manifest = this.props.manifest;
     while (imageUrl.charAt(0) === '/') {
@@ -14,6 +19,11 @@ class QuestionImage extends React.Component {
     }
     let newUrl = (manifest && manifest[imageUrl]) ? manifest[imageUrl] : imageUrl;
     return '/' + newUrl;
+  }
+
+  preloadImage(hoverImage) {
+    let img = document.createElement('img');
+    img.src = hoverImage;
   }
 
   renderImage() {
@@ -27,6 +37,12 @@ class QuestionImage extends React.Component {
         if (optionImage) {
           return <img src={this.getImageUrlFromManifest(optionImage.defaultUrl)} alt={optionImage.title}/>
         }
+      }
+    }
+    else {
+      if (question.image.hoverUrl && !this.props.showHover && this.preloaded.indexOf(question.image.hoverUrl) < 0) {
+        this.preloadImage(this.getImageUrlFromManifest(question.image.hoverUrl));
+        this.preloaded.push(question.image.hoverUrl);
       }
     }
     return <img src={this.props.showHover ? this.getImageUrlFromManifest(question.image.hoverUrl) : this.getImageUrlFromManifest(question.image.defaultUrl)} alt={question.image.title}/>

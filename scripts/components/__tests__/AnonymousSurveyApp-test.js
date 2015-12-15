@@ -89,13 +89,12 @@ describe('AnonymousSurveyApp', () => {
       // renderer.render(<AnonymousSurveyApp />);
       // this.result = renderer.getRenderOutput();
       localStorage.setItem('answers', '');
-      // this.spy = expect.spyOn(AnonymousSurveyApp.prototype, 'preloadQuestionHoverImages');
-      this.preloadSpy = sinon.spy(AnonymousSurveyApp.prototype, 'preloadQuestionHoverImages');
+      // this.preloadSpy = sinon.spy(AnonymousSurveyApp.prototype, 'preloadQuestionHoverImages');
       this.manifestSpy = sinon.spy(AnonymousSurveyApp.prototype, 'loadManifest');
       this.result = renderIntoDocument(<AnonymousSurveyApp />);
     });
     afterEach(function() {
-      AnonymousSurveyApp.prototype.preloadQuestionHoverImages.restore();
+      // AnonymousSurveyApp.prototype.preloadQuestionHoverImages.restore();
       AnonymousSurveyApp.prototype.loadManifest.restore();
     });
 
@@ -118,11 +117,6 @@ describe('AnonymousSurveyApp', () => {
 
       let component = TestUtils.findRenderedDOMComponentWithClass(this.result, "questions");
       expect(component.tagName).toEqual("UL");
-    });
-
-    it('should preload question hover images', function() {
-      // the spy gets called twice, one with a blank array and one with the correct arguments (because of the setState in the bindWithFirebase stub above, so it needs to render again)
-      expect(this.preloadSpy.getCall(1).args[0]).toEqual(['/assets/q1-hover.gif', '/assets/q2-hover.gif']);
     });
 
     it('should load the manifest file', function() {

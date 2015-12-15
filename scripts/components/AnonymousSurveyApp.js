@@ -80,10 +80,10 @@ class AnonymousSurveyApp extends React.Component {
         app.setState({
           manifest: JSON.parse(result.text)
         });
-        // console.log(result.text);
       }
-      // console.log(result);
     });
+
+    // this.setState({manifest: {"assets/q1-hover.gif": "assets/q1-hover-791841.gif"}});
   }
 
   // componentWillUnmount () { // So that we don't get listeners keep adding, we will unmount them
@@ -132,19 +132,9 @@ class AnonymousSurveyApp extends React.Component {
     return <Question key={key} index={key} question={this.state.questions[key]} selectOption={this.selectOption.bind(this)} answers={this.state.answers} surveyClosed={this.state.surveyClosed} manifest={this.state.manifest} />
   }
 
-  preloadQuestionHoverImages(hoverImages) {
-    for (var i = 0; i < hoverImages.length; i++) {
-      let img = document.createElement('img');
-      img.src = hoverImages[i];
-    }
-  }
-
   render() {
     let introH1 = this.state.surveyClosed ? "Thank you for taking our holiday survey. Here's how everyone responded." : "Will brand innovation impact your 2015 holiday season or will you be sticking with tradition?";
     let introH2 = this.state.surveyClosed ? "" : "Please answer the questions below and check back later for the full results.";
-
-    let hoverImages = Object.keys(this.state.questions).map(questionId => this.state.questions[questionId].image.hoverUrl);
-    this.preloadQuestionHoverImages(hoverImages);
 
     return (
       <div className={this.getClassName()}>
