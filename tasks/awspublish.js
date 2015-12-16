@@ -11,7 +11,7 @@ module.exports = (gulp, plugins, utilities) => {
                 routes: {
                     "^.+\\.(?:js|css|svg|ttf|json)$": {
                         gzip: true,
-                        useExpires: true,
+                        // useExpires: true,
                         cacheTime: 630720000,
                         public: false
                     },
@@ -19,7 +19,7 @@ module.exports = (gulp, plugins, utilities) => {
                         gzip: true
                     },
                     "^.+\\.mp4": {
-                        useExpires: true,
+                        // useExpires: true,
                         cacheTime: 630720000,
                         public: false
                     },
