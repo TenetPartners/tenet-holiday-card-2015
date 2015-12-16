@@ -1,4 +1,4 @@
-[![devDependency Status](https://david-dm.org/TenetPartners/react-seed/dev-status.svg)](https://david-dm.org/TenetPartners/react-seed#info=devDependencies)
+[![devDependency Status](https://david-dm.org/TenetPartners/tenet-holiday-card-2015/dev-status.svg)](https://david-dm.org/TenetPartners/tenet-holiday-card-2015#info=devDependencies)
 [![Build Status](https://travis-ci.org/TenetPartners/tenet-holiday-card-2015.svg?branch=master)](https://travis-ci.org/TenetPartners/tenet-holiday-card-2015)
 [![Coverage Status](https://coveralls.io/repos/TenetPartners/tenet-holiday-card-2015/badge.svg?branch=master&service=github)](https://coveralls.io/github/TenetPartners/tenet-holiday-card-2015?branch=master)
 
