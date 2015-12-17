@@ -18,7 +18,7 @@ module.exports = (gulp, plugins, utilities) => {
                     "^.+\\.html": {
                         gzip: true
                     },
-                    "^.+\\.mp4": {
+                    "^.+\\.(?:mp4|jpg|png|gif)": {
                         // useExpires: true,
                         cacheTime: 630720000,
                         public: false
