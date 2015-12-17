@@ -134,7 +134,7 @@ class AnonymousSurveyApp extends React.Component {
 
   render() {
     let introH1 = this.state.surveyClosed ? "Thank you for taking our holiday survey. Here's how everyone responded." : "Will brand innovation impact your 2015 holiday season or will you be sticking with tradition?";
-    let introH2 = this.state.surveyClosed ? "" : "Please answer the questions below and check back later for the full results.";
+    let introH2 = this.state.surveyClosed ? "" : "Answer the questions below and check back later for the full results.";
 
     return (
       <div className={this.getClassName()}>
