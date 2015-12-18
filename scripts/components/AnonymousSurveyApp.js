@@ -133,8 +133,8 @@ class AnonymousSurveyApp extends React.Component {
   }
 
   render() {
-    let introH1 = this.state.surveyClosed ? "Thank you for taking our holiday survey. Here's how everyone responded." : "Will brand innovation impact your 2015 holiday season or will you be sticking with tradition?";
-    let introH2 = this.state.surveyClosed ? "" : "Answer the questions below and check back later for the full results.";
+    let introH1 = this.state.surveyClosed ? "Thank you for taking our holiday survey. Here's how everyone responded." : "Will brand innovation be disrupting your 2015 holiday season or will you be sticking with tradition?";
+    let introH2 = this.state.surveyClosed ? "" : "Let us know and see what others will be doing by answering the following five questions";
 
     return (
       <div className={this.getClassName()}>
@@ -146,11 +146,11 @@ class AnonymousSurveyApp extends React.Component {
           {Object.keys(this.state.questions).map(this.renderQuestion.bind(this))}
         </ul>
         <div className="conclusion">
-          <h2>And most importantly, how will <span className="redText">you</span> help brighten<br/> the holidays for those less fortunate?</h2>
-          <p>This season, Tenet Partners is making a donation<br/> to No Child Hungry on behalf of our clients and partners.</p>
+          <h2>How will <span className="redText">you</span> help brighten<br/> the holidays for those less fortunate?</h2>
+          <p>Tenet Partners is making a donation to <a href="https://www.nokidhungry.org">No Kid Hungry</a> on behalf of our clients and partners.</p>
         </div>
         <div className="bestMessage">
-          <p>We hope you have a joyous season with family and friends.<br/> All the best from Tenet Partners. </p>
+          <p>However you choose to experience of this holiday, we wish you a joyous season with family and friends. All the best from Tenet Partners.<br/><a href="https://tenetpartners.com">tenetpartners.com</a></p>
         </div>
       </div>
     )
