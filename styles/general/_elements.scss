@@ -11,7 +11,7 @@ body {
   @include breakpoint($breakpoint-2-column) {
     padding-top: $header-height-bp-2;
   }
-  background-image: url(/assets/images/background-image.png);
+  background-image: url(/assets/images/snow-background.jpg);
 }
 
 p {
