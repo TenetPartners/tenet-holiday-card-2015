@@ -75,7 +75,7 @@ class AnonymousSurveyApp extends React.Component {
 
   loadManifest() {
     let app = this;
-    request.get('/rev-manifest.json').end(function(err, result) {
+    request.get('/rev-manifest.json?t=' + new Date().getTime()).end(function(err, result) {
       if (result && result.statusCode === 200) {
         app.setState({
           manifest: JSON.parse(result.text)
@@ -146,10 +146,10 @@ class AnonymousSurveyApp extends React.Component {
           {Object.keys(this.state.questions).map(this.renderQuestion.bind(this))}
         </ul>
         <div className="conclusion">
-          <p>However you choose to experience this holiday, we wish you a joyous season with family and friends. All the best from Tenet Partners.</p><p><a href="https://tenetpartners.com">tenetpartners.com</a></p>
+          <p>However you choose to experience this holiday, we wish you a joyous season with family and friends.</p><p><a href="https://tenetpartners.com">tenetpartners.com</a></p>
         </div>
         <div className="bestMessage">
-          <p>On behalf of our clients and partners, Tenet Partners is making a donation to <a href="https://www.nokidhungry.org">No Kid Hungry</a>.</p>
+          <p>On behalf of our clients and friends, Tenet Partners is making a donation to <a href="https://www.nokidhungry.org">No Kid Hungry</a>.</p>
         </div>
       </div>
     )

@@ -24,7 +24,7 @@
   .conclusion{
     margin-top: 100px;
     border-bottom: 1px solid #000;
-    padding-bottom: 85px;
+    padding-bottom: 55px;
     h2{
       @include text-spec(26px, 33px);
       text-align: center;
@@ -39,8 +39,8 @@
     }  
   }
   .bestMessage{
-    margin-top: 100px;
-    margin-bottom: 100px;
+    margin-top: 70px;
+    margin-bottom: 50px;
     p{
       @include text-spec(22px, 24px);
       font-family: $font-family-italic;
