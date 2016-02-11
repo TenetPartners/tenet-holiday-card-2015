@@ -27,7 +27,7 @@
     "expect": "^1.13.0",
     "expect-jsx": "^2.1.2",
     "firebase": "^2.3.1",
-    "glob": "^6.0.2",
+    "glob": "^7.0.0",
     "gulp": "^3.9.0",
     "gulp-autoprefixer": "^3.1.0",
     "gulp-awspublish": "^3.0.1",
