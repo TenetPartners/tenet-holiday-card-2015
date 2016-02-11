@@ -62,7 +62,7 @@
     "react-catalyst": "^0.3.0",
     "react-dom": "^0.14.0",
     "react-mixin": "^3.0.0",
-    "react-router": "^1.0.0",
+    "react-router": "^2.0.0",
     "require-dir": "^0.3.0",
     "run-sequence": "^1.1.5",
     "sinon": "^1.17.2",
