@@ -60,7 +60,7 @@
     "react-addons-test-utils": "^0.14.3",
     "react-addons-update": "^0.14.3",
     "react-catalyst": "^0.3.0",
-    "react-dom": "^0.14.0",
+    "react-dom": "^15.0.0",
     "react-mixin": "^3.0.0",
     "react-router": "^2.0.0",
     "require-dir": "^0.3.0",
