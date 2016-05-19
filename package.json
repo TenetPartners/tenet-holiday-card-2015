@@ -51,7 +51,7 @@
     "history": "^2.0.0",
     "install": "^0.7.1",
     "isparta": "^4.0.0",
-    "jsdom": "^8.0.1",
+    "jsdom": "^9.0.0",
     "localStorage": "^1.0.3",
     "normalize-scss": "^4.0.3",
     "re-base": "^1.2.1",
