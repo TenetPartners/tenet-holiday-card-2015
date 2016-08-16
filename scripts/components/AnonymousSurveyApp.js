@@ -8,7 +8,8 @@ import Rebase from 're-base'
 import Question from './Question'
 // import questions from '../questions'
 import config from '../config'
-import Firebase from 'firebase'
+import firebase from 'firebase'
+import firebaseDb from '../firebase'
 import request from 'superagent'
 
 // const base = Rebase.createClass(config.firebaseUrl);
@@ -25,16 +26,13 @@ class AnonymousSurveyApp extends React.Component {
       manifest: {}
     };
 
-    this.base = Rebase.createClass(config.firebaseUrl);
-    this.fbRef = new Firebase(config.firebaseUrl);
+    this.base = Rebase.createClass(config.databaseURL);
+    this.fbRef = firebaseDb.ref();
   }
 
   componentWillMount() {
     var token = localStorage.getItem('token');
-    if (token) {
-      this.fbRef.authWithCustomToken(token, this.authHandler.bind(this));
-    }
-    else {
+    if (!token) {
       this.loginAnonymously();
     }
   }
@@ -51,19 +49,20 @@ class AnonymousSurveyApp extends React.Component {
     }
   }
 
-  authHandler(err, authData) {
-    if (err) {
-      // console.err(err);
-      return;
-    }
-
-    // console.log("Authenticated successfully with payload:", authData);
-    // save the login token in the browser
-    localStorage.setItem('token', authData.token);
-  }
-
   loginAnonymously() {
-    this.fbRef.authAnonymously(this.authHandler.bind(this));
+    firebase.auth().signInAnonymously().catch(function(error) {
+      // Handle Errors here.
+      var errorCode = error.code;
+      var errorMessage = error.message;
+      // ...
+    });
+    firebase.auth().onAuthStateChanged(function(user) {
+      if (user) {
+        // User is signed in.
+        var uid = user.uid;
+        localStorage.setItem('token', uid);
+      }
+    });
   }
 
   bindWithFirebase() {
