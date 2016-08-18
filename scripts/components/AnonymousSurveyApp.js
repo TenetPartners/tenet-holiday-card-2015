@@ -7,13 +7,8 @@ import update from 'react-addons-update'
 import Rebase from 're-base'
 import Question from './Question'
 // import questions from '../questions'
-import config from '../config'
-import firebase from 'firebase'
 import firebaseApp from '../firebase'
 import request from 'superagent'
-
-// const base = Rebase.createClass(config.firebaseUrl);
-// const fbRef = new Firebase(config.firebaseUrl);
 
 class AnonymousSurveyApp extends React.Component {
 
@@ -26,7 +21,6 @@ class AnonymousSurveyApp extends React.Component {
       manifest: {}
     };
 
-    this.base = Rebase.createClass(config);
     this.fbRef = firebaseApp.database().ref();
   }
 
@@ -50,11 +44,11 @@ class AnonymousSurveyApp extends React.Component {
   }
 
   loginAnonymously() {
-    firebase.auth(firebaseApp).signInAnonymously().catch(function(error) {
+    firebaseApp.auth().signInAnonymously().catch(function(error) {
       var errorCode = error.code;
       var errorMessage = error.message;
     });
-    firebase.auth(firebaseApp).onAuthStateChanged(function(user) {
+    firebaseApp.auth().onAuthStateChanged(function(user) {
       if (user) {
         // User is signed in.
         var uid = user.uid;
@@ -64,7 +58,7 @@ class AnonymousSurveyApp extends React.Component {
   }
 
   bindWithFirebase() {
-    this.rebaseRef = this.base.bindToState('questions', {
+    this.rebaseRef = firebaseApp.bindToState('questions', {
       context: this,
       state: 'questions'
     });
