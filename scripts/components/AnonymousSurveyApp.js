@@ -9,7 +9,7 @@ import Question from './Question'
 // import questions from '../questions'
 import config from '../config'
 import firebase from 'firebase'
-import firebaseDb from '../firebase'
+import firebaseApp from '../firebase'
 import request from 'superagent'
 
 // const base = Rebase.createClass(config.firebaseUrl);
@@ -26,8 +26,8 @@ class AnonymousSurveyApp extends React.Component {
       manifest: {}
     };
 
-    this.base = Rebase.createClass(config.databaseURL);
-    this.fbRef = firebaseDb.ref();
+    this.base = Rebase.createClass(config);
+    this.fbRef = firebaseApp.database().ref();
   }
 
   componentWillMount() {
@@ -50,13 +50,11 @@ class AnonymousSurveyApp extends React.Component {
   }
 
   loginAnonymously() {
-    firebase.auth().signInAnonymously().catch(function(error) {
-      // Handle Errors here.
+    firebase.auth(firebaseApp).signInAnonymously().catch(function(error) {
       var errorCode = error.code;
       var errorMessage = error.message;
-      // ...
     });
-    firebase.auth().onAuthStateChanged(function(user) {
+    firebase.auth(firebaseApp).onAuthStateChanged(function(user) {
       if (user) {
         // User is signed in.
         var uid = user.uid;
