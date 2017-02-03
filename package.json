@@ -37,7 +37,7 @@
     "gulp-eslint": "^3.0.1",
     "gulp-inline-source": "^3.0.0",
     "gulp-istanbul": "^1.0.0",
-    "gulp-load-plugins": "^1.1.0",
+    "gulp-load-plugins": "^1.5.0",
     "gulp-mocha": "^3.0.0",
     "gulp-notify": "^2.2.0",
     "gulp-rename": "^1.2.2",
