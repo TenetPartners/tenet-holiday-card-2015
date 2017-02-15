@@ -25,7 +25,7 @@
     "connect-history-api-fallback": "^1.1.0",
     "eslint-plugin-react": "^6.1.1",
     "expect": "^1.13.0",
-    "expect-jsx": "^2.1.2",
+    "expect-jsx": "^3.0.0",
     "firebase": "^3.6.9",
     "glob": "^7.0.0",
     "gulp": "^3.9.0",
