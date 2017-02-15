@@ -58,7 +58,7 @@
     "react": "^15.0.0",
     "react-addons-css-transition-group": "^15.0.0",
     "react-addons-test-utils": "^15.0.0",
-    "react-addons-update": "^15.2.1",
+    "react-addons-update": "^15.4.2",
     "react-catalyst": "^0.3.0",
     "react-dom": "^15.0.0",
     "react-mixin": "^3.0.0",
