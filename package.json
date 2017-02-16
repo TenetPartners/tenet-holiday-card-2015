@@ -20,7 +20,7 @@
     "babel-preset-stage-0": "^6.22.0",
     "babelify": "^7.2.0",
     "breakpoint-sass": "^2.6.1",
-    "browser-sync": "^2.16.1",
+    "browser-sync": "^2.18.4",
     "browserify": "^14.1.0",
     "connect-history-api-fallback": "^1.1.0",
     "eslint-plugin-react": "^6.10.0",
