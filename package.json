@@ -23,7 +23,7 @@
     "browser-sync": "^2.18.4",
     "browserify": "^14.1.0",
     "connect-history-api-fallback": "^1.1.0",
-    "eslint-plugin-react": "^6.10.0",
+    "eslint-plugin-react": "^6.10.1",
     "expect": "^1.13.0",
     "expect-jsx": "^3.0.0",
     "firebase": "^3.6.9",
