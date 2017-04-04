@@ -21,7 +21,7 @@
     "babelify": "^7.2.0",
     "breakpoint-sass": "^2.7.1",
     "browser-sync": "^2.18.4",
-    "browserify": "^14.1.0",
+    "browserify": "^14.3.0",
     "connect-history-api-fallback": "^1.1.0",
     "eslint-plugin-react": "^6.10.0",
     "expect": "^1.13.0",
