@@ -4,6 +4,8 @@
 
 # Tenet Partners Holiday Card 2015
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/TenetPartners/tenet-holiday-card-2015.svg)](https://greenkeeper.io/)
+
 A short, fun questionnaire that stores and displays anonymous responses.
 
 ## Setup
